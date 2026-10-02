@@ -38,6 +38,12 @@ Técnica en la que un objeto se arma con otros objetos y les delega trabajo (rel
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
 
+## Contrato
+
+Conjunto de promesas que una clase o interfaz hace a quien la usa: qué precondiciones exige, qué poscondiciones garantiza y qué invariantes mantiene. Una subclase sustituible respeta el contrato de su base.
+
+Ver también: [módulo 04](teoria/04-lsp.md)
+
 ## DRY
 
 *Don't Repeat Yourself*: cada pieza de conocimiento (una regla, una fórmula) debe vivir en un solo lugar. No prohíbe que dos trozos de código se parezcan, solo que se repita la misma decisión.
@@ -74,6 +80,12 @@ Contrato que lista las operaciones que un tipo promete ofrecer, sin decir cómo 
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
 
+## Invariante
+
+Condición que siempre es verdadera sobre un objeto, antes y después de cada operación (por ejemplo, un precio nunca negativo). Las subclases deben conservarla.
+
+Ver también: [módulo 04](teoria/04-lsp.md)
+
 ## KISS
 
 *Keep It Simple, Stupid*: entre varias soluciones que resuelven el problema, elegir la más simple y fácil de entender.
@@ -85,6 +97,12 @@ Ver también: [módulo 01](teoria/01-buenas-practicas.md)
 Un objeto solo debe hablar con sus vecinos inmediatos, no con los objetos de sus vecinos (`pedido.region_despacho()` en lugar de `pedido.cliente.direccion.comuna.region`). Reduce el acoplamiento.
 
 Ver también: [módulo 01](teoria/01-buenas-practicas.md)
+
+## LSP
+
+*Liskov Substitution Principle*: donde se espera un objeto de la clase base debe poder usarse una subclase sin que el programa se rompa ni se comporte de forma inesperada. Exige respetar el contrato de la base.
+
+Ver también: [módulo 04](teoria/04-lsp.md)
 
 ## Magic number
 
@@ -109,6 +127,18 @@ Ver también: [módulo 00](teoria/00-introduccion.md)
 Capacidad de que un mismo mensaje produzca comportamientos distintos según el objeto que lo recibe.
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
+
+## Poscondición
+
+Lo que un método garantiza que será verdad al terminar (por ejemplo, que el total devuelto no es negativo). Una subclase no puede debilitarla.
+
+Ver también: [módulo 04](teoria/04-lsp.md)
+
+## Precondición
+
+Lo que debe cumplirse antes de llamar a un método para que funcione bien (por ejemplo, que el subtotal no sea negativo). Una subclase no puede endurecerla.
+
+Ver también: [módulo 04](teoria/04-lsp.md)
 
 ## Razón para cambiar
 
