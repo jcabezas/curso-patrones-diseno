@@ -8,6 +8,12 @@ Un contrato general (normalmente una interfaz) que oculta los detalles de cada c
 
 Ver también: [módulo 03](teoria/03-ocp.md)
 
+## Abstract Factory
+
+Patrón creacional que ofrece una interfaz con un método de creación por cada producto de una familia. Cada fábrica concreta devuelve las piezas de su propia familia, así que el cliente no puede mezclar piezas incompatibles.
+
+Ver también: [módulo 09](teoria/09-abstract-factory.md)
+
 ## Acoplamiento
 
 Qué tanto depende un módulo de otro. Con acoplamiento bajo, cambiar una pieza no obliga a cambiar las demás.
@@ -91,6 +97,12 @@ Ver también: [módulo 03](teoria/03-ocp.md)
 Patrón creacional que define un método creador en una clase base y deja que las subclases decidan qué clase concreta instanciar. En lenguajes sin herencia, como Go, se reduce a una función constructora que devuelve una interfaz.
 
 Ver también: [módulo 08](teoria/08-factory-method.md)
+
+## Familia de productos
+
+Conjunto de objetos pensados para usarse juntos, como Webpay, el antifraude local y la boleta SII en Chile. Una Abstract Factory crea una familia completa y evita mezclar piezas de familias distintas.
+
+Ver también: [módulo 09](teoria/09-abstract-factory.md)
 
 ## God Object
 
