@@ -32,7 +32,7 @@ Curso autodidacta, nivel entrevista: entender cada concepto, saber explicarlo y 
 - [x] 12 [Adapter y Facade](teoria/12-adapter-facade.md)
 - [x] 13 [Decorator y Proxy](teoria/13-decorator-proxy.md)
 - [x] 14 [Composite y Flyweight](teoria/14-composite-flyweight.md)
-- [ ] 15 [Bridge](teoria/15-bridge.md)
+- [x] 15 [Bridge](teoria/15-bridge.md)
 - [ ] 16 [Strategy, State y Template Method](teoria/16-strategy-state-template-method.md)
 - [ ] 17 [Observer, Mediator y Chain of Responsibility](teoria/17-observer-mediator-chain.md)
 - [ ] 18 [Command, Memento e Iterator](teoria/18-command-memento-iterator.md)

@@ -32,6 +32,12 @@ Estructura de datos en la que cada elemento (nodo) puede tener elementos hijos, 
 
 Ver también: [módulo 14](teoria/14-composite-flyweight.md)
 
+## Bridge
+
+Patrón estructural que separa una abstracción de su implementación en dos jerarquías independientes. La abstracción guarda una referencia al implementor y le delega el trabajo, así que cada lado crece sin tocar al otro.
+
+Ver también: [módulo 15](teoria/15-bridge.md)
+
 ## Builder
 
 Patrón creacional que arma un objeto complejo paso a paso y lo entrega al final con `construir()`, ya validado. Evita constructores con muchos parámetros y objetos a medio armar.
@@ -146,6 +152,12 @@ En Flyweight, la parte del estado que es igual para muchos objetos y no cambia (
 
 Ver también: [módulo 14](teoria/14-composite-flyweight.md)
 
+## Explosión de subclases
+
+Crecimiento del número de clases como el producto de dos variaciones independientes (2 tipos de aviso por 3 canales son 6 clases) cuando se resuelven con herencia. Bridge lo reduce a una suma.
+
+Ver también: [módulo 15](teoria/15-bridge.md)
+
 ## Extensión
 
 Agregar comportamiento nuevo escribiendo código nuevo (una clase que implementa una interfaz existente) sin editar el código que ya funciona.
@@ -193,6 +205,12 @@ Ver también: [módulo 02](teoria/02-srp.md)
 Mecanismo por el que una clase reutiliza y extiende a otra (relación "es un"). Es potente, pero acopla al hijo con el padre.
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
+
+## Implementor
+
+En Bridge, la interfaz de bajo nivel que hace el trabajo real y a la que la abstracción delega (por ejemplo, `Canal` para entregar un aviso). Sus implementaciones concretas son intercambiables.
+
+Ver también: [módulo 15](teoria/15-bridge.md)
 
 ## Interfaz
 
