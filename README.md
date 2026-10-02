@@ -1,10 +1,12 @@
 # Curso de patrones de diseño, SOLID y buenas prácticas
 
-Curso autodidacta, nivel entrevista: entender cada concepto, saber explicarlo y reconocer cuándo usarlo. Todos los ejemplos usan una **tienda online** y están en **Python, TypeScript, Go y PHP**. Cada concepto trae una explicación simple, un diagrama Mermaid y preguntas de entrevista.
+Curso autodidacta, nivel entrevista: entender cada concepto, saber explicarlo y reconocer cuándo usarlo. Todos los ejemplos usan una **tienda online** y están en **Python, TypeScript, Go y PHP**. Cada concepto trae una explicación simple y un diagrama Mermaid, y cada módulo termina con sus preguntas de entrevista.
 
 ## Cómo está organizado
 
 - `teoria/` — un módulo por archivo, en el orden del temario.
+- `teoria/_transversales.md` — preguntas de entrevista que cruzan varios módulos (SOLID y patrones juntos).
+- `docs/plantillas/` — plantillas de módulo (`modulo-solid.md`, `modulo-patron.md`) para quien mantiene el curso.
 - `glosario.md` — términos técnicos.
 - [`preguntas-entrevista.md`](preguntas-entrevista.md) — todas las preguntas juntas (generado).
 
@@ -12,7 +14,7 @@ Curso autodidacta, nivel entrevista: entender cada concepto, saber explicarlo y 
 
 - Dinero en pesos chilenos como entero (`12990`).
 - Dominio fijo: `Producto`, `ItemCarrito`, `Carrito`, `Cliente`, `Pedido`, `MetodoPago`, `ReglaDescuento`, `Notificador`, `PedidoRepository`.
-- Cada patrón sigue el mismo orden: El problema, La idea en pocas palabras, Diagrama, Código, Cuándo usarlo y cuándo no, Preguntas de entrevista.
+- Cada patrón sigue el mismo orden: El problema, La idea en pocas palabras, Diagrama, Código, Cuándo usarlo y cuándo no; las preguntas de entrevista van una vez por módulo, al final.
 - Go se escribe de forma idiomática; cuando un patrón casi desaparece en Go, hay una nota.
 
 ## Temario y estado
@@ -41,8 +43,9 @@ Curso autodidacta, nivel entrevista: entender cada concepto, saber explicarlo y 
 
 ## Verificación (para quien mantiene el curso)
 
-```bash
-python scripts/verificar.py            # estructura, lenguajes, diagramas, enlaces, voseo
+```powershell
+python scripts/verificar.py            # estructura, lenguajes, diagramas, enlaces, voseo, bloques de más de 40 líneas
+python scripts/verificar.py --final    # lo anterior + README, glosario y preguntas
 python scripts/sintaxis.py             # sintaxis de Python, PHP y TypeScript
 python scripts/consolidar_preguntas.py # regenera preguntas-entrevista.md
 python scripts/validar_mermaid.py      # genera .tmp/mermaid-check.html (ver docstring)

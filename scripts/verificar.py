@@ -55,7 +55,8 @@ H2_NO_PATRON = {PREGUNTAS, "Comparación", "Resumen"}
 SOLID_RE = re.compile(r"\b(SRP|OCP|LSP|ISP|DIP)\b")
 VOSEO_RE = re.compile(
     r"\b(vos|tenés|podés|querés|sabés|grabás|parás|hacé|mirá|fijate|usá|ponés|"
-    r"decís|sos|andá|elegí|pensá|escribí|aplicá|fijá)\b", re.I)
+    r"decís|sos|andá|pensá|aplicá|fijá|necesitás|mirás|hacés)\b", re.I)
+MAX_LINEAS_BLOQUE = 40
 PREGUNTA_RE = re.compile(r"^\*\*P\d+\.")
 
 
@@ -190,6 +191,11 @@ def errores_modulo(num):
         if n_mermaid < 1:
             errs.append("falta el diagrama mermaid")
 
+    for s in secs:
+        for (lang, codigo) in s["fences"]:
+            n = len(codigo.splitlines())
+            if lang in FENCE.values() and n > MAX_LINEAS_BLOQUE:
+                errs.append(f"bloque {lang} de {n} líneas (máximo {MAX_LINEAS_BLOQUE}) en: {s['titulo']}")
     for s in secs:
         for l in s["lineas"]:
             m = VOSEO_RE.search(l)
