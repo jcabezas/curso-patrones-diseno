@@ -68,6 +68,18 @@ Conjunto de promesas que una clase o interfaz hace a quien la usa: qué precondi
 
 Ver también: [módulo 04](teoria/04-lsp.md)
 
+## Copia profunda
+
+Copia de un objeto que duplica también todo lo que contiene (listas, objetos internos), recursivamente. El clon es independiente: modificarlo no afecta al original.
+
+Ver también: [módulo 11](teoria/11-prototype.md)
+
+## Copia superficial
+
+Copia de un objeto que duplica solo el objeto, pero deja sus campos de referencia (listas, maps, objetos internos) apuntando a los mismos objetos del original. Modificar uno de esos campos en el clon también cambia el original.
+
+Ver también: [módulo 11](teoria/11-prototype.md)
+
 ## DIP
 
 *Dependency Inversion Principle*: los módulos de alto nivel no deben depender de los de bajo nivel; ambos deben depender de abstracciones. La regla define el contrato y el detalle lo implementa.
@@ -235,6 +247,12 @@ Ver también: [módulo 04](teoria/04-lsp.md)
 Lo que debe cumplirse antes de llamar a un método para que funcione bien (por ejemplo, que el subtotal no sea negativo). Una subclase no puede endurecerla.
 
 Ver también: [módulo 04](teoria/04-lsp.md)
+
+## Prototype
+
+Patrón creacional que crea objetos copiando un objeto existente mediante un método `clonar()`, sin conocer su clase concreta ni sus campos. Lo delicado es que la copia sea profunda.
+
+Ver también: [módulo 11](teoria/11-prototype.md)
 
 ## Razón para cambiar
 

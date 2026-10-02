@@ -28,7 +28,7 @@ Curso autodidacta, nivel entrevista: entender cada concepto, saber explicarlo y 
 - [x] 08 [Factory Method](teoria/08-factory-method.md)
 - [x] 09 [Abstract Factory](teoria/09-abstract-factory.md)
 - [x] 10 [Builder](teoria/10-builder.md)
-- [ ] 11 [Prototype](teoria/11-prototype.md)
+- [x] 11 [Prototype](teoria/11-prototype.md)
 - [ ] 12 [Adapter y Facade](teoria/12-adapter-facade.md)
 - [ ] 13 [Decorator y Proxy](teoria/13-decorator-proxy.md)
 - [ ] 14 [Composite y Flyweight](teoria/14-composite-flyweight.md)
