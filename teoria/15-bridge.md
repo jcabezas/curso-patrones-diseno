@@ -39,6 +39,8 @@ Piensa en un control remoto y un televisor: el control (botones de volumen, cana
 
 **Bridge** separa una **abstracción** (la parte de alto nivel: qué se quiere comunicar; [glosario](../glosario.md#abstracción)) de su **implementor** (la parte de bajo nivel que hace el trabajo: cómo se entrega; [glosario](../glosario.md#implementor)) en dos jerarquías independientes. La abstracción guarda una referencia a un implementor y le delega el trabajo. Esa referencia es el "puente": cualquier abstracción se conecta con cualquier implementor, y cada lado crece sin tocar al otro.
 
+Ojo con el nombre: en Bridge, "abstracción" **no** significa interfaz ni clase abstracta, sino la clase de alto nivel (`Aviso`) que contiene al implementor y le delega. El contrato, es decir la interfaz, es el `Canal`. En los ejemplos `Aviso` se declara abstracta solo por comodidad; podría ser una clase concreta y seguiría siendo la abstracción del patrón.
+
 - **Abstracción** → `Aviso`: contiene un `Canal` y define `enviar(pedido)`.
 - **Abstracciones refinadas** → `AvisoPedido`, `AvisoPromocion`: cada una arma su propio mensaje.
 - **Implementor** → `Canal`: la interfaz de entrega, con `enviar(mensaje)`.
@@ -479,7 +481,7 @@ La diferencia práctica: Adapter arregla lo que ya está construido; Bridge se p
 Ambos usan composición, pero con intención opuesta. Adapter se aplica después, para hacer compatible una clase existente con la interfaz que el cliente espera. Bridge se planifica de antemano para separar una abstracción de su implementación y que las dos evolucionen por separado.
 
 **P2. ¿En qué se diferencia Bridge de Strategy?**
-El código se parece, porque en ambos un objeto delega en otro mediante una interfaz. En Strategy el cliente elige un algoritmo intercambiable y no hay una jerarquía de abstracciones del lado que delega. En Bridge hay dos jerarquías que crecen: la abstracción (`AvisoPedido`, `AvisoPromocion`) y el implementor (`CanalEmail`, `CanalSMS`).
+El código se parece, porque en ambos un objeto delega en otro mediante una interfaz. En Strategy el cliente elige un algoritmo intercambiable y no hay una jerarquía de abstracciones del lado que delega. En Bridge hay dos jerarquías que crecen: la de la abstracción (`Aviso`, con `AvisoPedido` y `AvisoPromocion`) y la del implementor (`Canal`, con `CanalEmail` y `CanalSMS`).
 
 **P3. ¿Qué es la explosión de subclases?**
 Es cuando una clase varía en dos dimensiones y se resuelve con herencia: hay una subclase por cada combinación. Con 2 tipos de aviso y 3 canales son 6 clases; con 3 tipos y 4 canales, 12. Con Bridge el número es la suma (3 + 4 = 7), no el producto.

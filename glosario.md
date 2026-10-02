@@ -4,9 +4,12 @@ Términos técnicos del curso, en orden alfabético. Cada módulo agrega los suy
 
 ## Abstracción
 
-Un contrato general (normalmente una interfaz) que oculta los detalles de cada caso concreto. Quien la usa depende del contrato y no de las implementaciones.
+Tiene dos acepciones en el curso.
 
-Ver también: [módulo 03](teoria/03-ocp.md)
+1. General: un contrato (normalmente una interfaz) que oculta los detalles de cada caso concreto. Quien la usa depende del contrato y no de las implementaciones.
+2. En el patrón Bridge (GoF): la clase de alto nivel que delega el trabajo en un implementor (por ejemplo, `Aviso`, que delega en un `Canal`). No es una interfaz ni una clase abstracta, aunque el nombre lo sugiera; puede ser una clase concreta.
+
+Ver también: [módulo 03](teoria/03-ocp.md), [módulo 15](teoria/15-bridge.md)
 
 ## Abstract Factory
 
