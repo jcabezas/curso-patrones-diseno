@@ -2,6 +2,12 @@
 
 Términos técnicos del curso, en orden alfabético. Cada módulo agrega los suyos.
 
+## Abstracción
+
+Un contrato general (normalmente una interfaz) que oculta los detalles de cada caso concreto. Quien la usa depende del contrato y no de las implementaciones.
+
+Ver también: [módulo 03](teoria/03-ocp.md)
+
 ## Acoplamiento
 
 Qué tanto depende un módulo de otro. Con acoplamiento bajo, cambiar una pieza no obliga a cambiar las demás.
@@ -44,6 +50,12 @@ Ocultar el estado interno de un objeto y exponer solo operaciones controladas, d
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
 
+## Extensión
+
+Agregar comportamiento nuevo escribiendo código nuevo (una clase que implementa una interfaz existente) sin editar el código que ya funciona.
+
+Ver también: [módulo 03](teoria/03-ocp.md)
+
 ## God Object
 
 Clase que lo sabe y lo hace todo: acumula muchas responsabilidades no relacionadas y todo el sistema depende de ella. Es la violación típica de SRP.
@@ -79,6 +91,12 @@ Ver también: [módulo 01](teoria/01-buenas-practicas.md)
 Valor literal sin nombre dentro del código (`19`, `30`) cuyo significado nadie recuerda. Se corrige con una constante con nombre.
 
 Ver también: [módulo 01](teoria/01-buenas-practicas.md)
+
+## OCP
+
+*Open/Closed Principle*: el código debe estar abierto para extensión y cerrado para modificación. Los casos nuevos se agregan como código nuevo detrás de una abstracción, sin editar lo existente.
+
+Ver también: [módulo 03](teoria/03-ocp.md)
 
 ## Patrón de diseño
 
