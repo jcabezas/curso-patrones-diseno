@@ -400,7 +400,7 @@ func (p Pedido) CalcularTotal() int {
 }
 
 type ResultadoPago struct {
-	OK         bool
+	Ok         bool
 	Referencia string
 }
 ```
@@ -416,7 +416,7 @@ type Notificador interface {
 }
 
 type MetodoPago interface {
-	Pagar(monto int) (ResultadoPago, error)
+	Pagar(monto int) ResultadoPago
 }
 
 type ServicioPedidos struct {
@@ -432,11 +432,8 @@ func NewServicioPedidos(repo PedidoRepository, notificador Notificador, pago Met
 
 ```go
 func (s *ServicioPedidos) Confirmar(pedido *Pedido) (string, error) {
-	resultado, err := s.pago.Pagar(pedido.CalcularTotal())
-	if err != nil {
-		return "", err
-	}
-	if !resultado.OK {
+	resultado := s.pago.Pagar(pedido.CalcularTotal())
+	if !resultado.Ok {
 		return fmt.Sprintf("Pedido %d rechazado", pedido.ID), nil
 	}
 	pedido.Estado = "pagado"
@@ -486,8 +483,8 @@ func (n *NotificadorFalso) Notificar(destinatario, mensaje string) error {
 
 type PagoFalso struct{}
 
-func (PagoFalso) Pagar(monto int) (ResultadoPago, error) {
-	return ResultadoPago{OK: true, Referencia: "FALSO-001"}, nil
+func (PagoFalso) Pagar(monto int) ResultadoPago {
+	return ResultadoPago{Ok: true, Referencia: "FALSO-001"}
 }
 ```
 
@@ -501,8 +498,8 @@ func (NotificadorCorreo) Notificar(destinatario, mensaje string) error {
 
 type PagoTarjeta struct{}
 
-func (PagoTarjeta) Pagar(monto int) (ResultadoPago, error) {
-	return ResultadoPago{OK: true, Referencia: "TJ-001"}, nil // en la tienda real, el proveedor
+func (PagoTarjeta) Pagar(monto int) ResultadoPago {
+	return ResultadoPago{Ok: true, Referencia: "TJ-001"} // en la tienda real, el proveedor
 }
 
 func pedidoDemo() *Pedido {
