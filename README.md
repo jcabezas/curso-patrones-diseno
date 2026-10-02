@@ -37,7 +37,7 @@ Curso autodidacta, nivel entrevista: entender cada concepto, saber explicarlo y 
 - [x] 17 [Observer, Mediator y Chain of Responsibility](teoria/17-observer-mediator-chain.md)
 - [x] 18 [Command, Memento e Iterator](teoria/18-command-memento-iterator.md)
 - [x] 19 [Visitor e Interpreter](teoria/19-visitor-interpreter.md)
-- [ ] 20 [Antipatrones y caso de cierre](teoria/20-antipatrones-y-cierre.md)
+- [x] 20 [Antipatrones y caso de cierre](teoria/20-antipatrones-y-cierre.md)
 
 ## Verificación (para quien mantiene el curso)
 

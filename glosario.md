@@ -29,6 +29,12 @@ Patrón estructural que convierte la interfaz de una clase existente en la que e
 
 Ver también: [módulo 12](teoria/12-adapter-facade.md)
 
+## Antipatrón
+
+Solución que parece razonable y se repite mucho, pero produce más problemas de los que resuelve. Tiene nombre (God Object, Spaghetti code) para poder reconocerla y discutirla en una revisión de código.
+
+Ver también: [módulo 20](teoria/20-antipatrones-y-cierre.md)
+
 ## Árbol
 
 Estructura de datos en la que cada elemento (nodo) puede tener elementos hijos, empezando por una raíz. Las carpetas con archivos y los combos con productos son ejemplos.
@@ -58,6 +64,12 @@ Ver también: [módulo 10](teoria/10-builder.md)
 Función que se entrega a otro código para que la llame más tarde, cuando ocurra algo. En Observer, cada suscriptor se registra con un callback; en Go y JavaScript es un valor de primera clase.
 
 Ver también: [módulo 17](teoria/17-observer-mediator-chain.md)
+
+## Cargo cult
+
+Copiar la forma de una práctica o de un patrón sin entender para qué sirve, solo porque "así se hace" o porque funcionó en otro proyecto. Se paga el costo del patrón sin recibir su beneficio.
+
+Ver también: [módulo 20](teoria/20-antipatrones-y-cierre.md)
 
 ## Chain of Responsibility
 
@@ -245,6 +257,12 @@ Clase que lo sabe y lo hace todo: acumula muchas responsabilidades no relacionad
 
 Ver también: [módulo 02](teoria/02-srp.md)
 
+## Golden Hammer
+
+Antipatrón del martillo de oro: aplicar la herramienta favorita (un patrón, un framework) a todo problema, aunque no encaje. Si todo es un Singleton o una Factory, se está usando un Golden Hammer.
+
+Ver también: [módulo 20](teoria/20-antipatrones-y-cierre.md)
+
 ## Gramática
 
 Conjunto de reglas que define qué expresiones son válidas en un lenguaje y cómo se combinan. En Interpreter, cada regla de la gramática se representa con una clase.
@@ -328,6 +346,12 @@ Ver también: [módulo 18](teoria/18-command-memento-iterator.md)
 *Keep It Simple, Stupid*: entre varias soluciones que resuelven el problema, elegir la más simple y fácil de entender.
 
 Ver también: [módulo 01](teoria/01-buenas-practicas.md)
+
+## Lava flow
+
+Antipatrón del código muerto que nadie borra por miedo a romper algo: clases, banderas y rutas que quizá ya no se usan pero se siguen leyendo y manteniendo. Se endurece como lava. Se cura con pruebas y control de versiones.
+
+Ver también: [módulo 20](teoria/20-antipatrones-y-cierre.md)
 
 ## Lazy loading
 
@@ -473,11 +497,23 @@ Foto inmutable del estado de un objeto en un instante. En Memento, solo el objet
 
 Ver también: [módulo 18](teoria/18-command-memento-iterator.md)
 
+## Sobreingeniería
+
+Construir más abstracción, capas o flexibilidad de la que el problema necesita (el clásico `AbstractFactoryFactory`). Cuesta más de entender y mantener, y la flexibilidad prometida casi nunca se usa.
+
+Ver también: [módulo 20](teoria/20-antipatrones-y-cierre.md)
+
 ## SOLID
 
 Cinco principios de diseño orientado a objetos (SRP, OCP, LSP, ISP, DIP) que ayudan a escribir código fácil de cambiar y de probar.
 
 Ver también: [módulo 02](teoria/02-srp.md)
+
+## Spaghetti code
+
+Código con un flujo enredado y sin estructura clara, típicamente métodos enormes con `if` anidados y saltos entre partes lejanas. Nadie se atreve a tocarlo porque un cambio rompe algo distante.
+
+Ver también: [módulo 20](teoria/20-antipatrones-y-cierre.md)
 
 ## SRP
 
