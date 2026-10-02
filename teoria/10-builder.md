@@ -509,7 +509,7 @@ Una fábrica decide **qué clase** instanciar y devuelve el objeto en una sola l
 Es un constructor (o una cadena de constructores sobrecargados) con una fila de parámetros opcionales que crece con cada opción nueva. Los llamados se vuelven ilegibles, es fácil pasar un valor en la posición equivocada sin que el compilador lo note si los tipos coinciden, y no hay dónde validar el conjunto. Builder lo reemplaza con pasos con nombre.
 
 **P3. ¿Cómo se garantiza que el objeto final sea válido e inmutable?**
-La validez se garantiza haciendo que `construir()` sea la única vía de crear el objeto y que ahí se revisen las reglas (cliente presente, al menos un item). La inmutabilidad se logra con un objeto sin setters (propiedades `readonly`, `frozen=True`, campos sin exportar) y copiando las colecciones que recibe, para que el builder no pueda alterarlas después.
+La validez se garantiza haciendo que `construir()` sea la vía normal de crear el objeto y que ahí se revisen las reglas (cliente presente, al menos un item); para que sea la única, el constructor se deja privado o no exportado donde el lenguaje lo permite. La inmutabilidad se logra con un objeto sin setters (propiedades `readonly`, `frozen=True`, campos sin exportar) y copiando las colecciones que recibe, para que el builder no pueda alterarlas después.
 
 **P4. ¿Cómo se hace en Go?**
 Con *functional options*: la función constructora recibe los datos obligatorios como argumentos y las opciones como funciones variádicas (`NuevoPedido(cliente, ConCupon("X"), ConNota("..."))`). Aplica cada opción sobre el objeto, valida y devuelve `(Pedido, error)`. No hace falta un tipo builder, y agregar una opción es escribir una función.

@@ -341,7 +341,7 @@ func demoVisitor() {
 }
 ```
 
-> **Nota Go:** muchas veces el Visitor completo sobra en Go: un `switch` sobre el tipo (type switch) hace lo mismo con menos código, porque el compilador ya despacha por el tipo dinámico de la interfaz.
+> **Nota Go:** muchas veces el Visitor completo sobra en Go: un `switch` sobre el tipo (type switch) hace lo mismo con menos código, porque el type switch elige la rama en tiempo de ejecución según el tipo dinámico de la interfaz.
 >
 > ```go
 > func ivaConSwitch(e ElementoCarrito) int {
@@ -788,7 +788,7 @@ echo 'cupón aplicable: ', $texto($ropaOCalzado->interpretar(['total' => 30000, 
 
 **Visitor vs Strategy.** Los dos sacan un comportamiento fuera de un objeto y lo ponen en otra clase, pero responden a preguntas distintas.
 
-| | Visitor | Strategy (módulo de Strategy, State y Template Method) |
+| | Visitor | Strategy ([módulo 16](16-strategy-state-template-method.md)) |
 |---|---|---|
 | Qué varía | La **operación** que se aplica a una estructura de tipos distintos | El **algoritmo** que usa un solo objeto |
 | Quién elige el método | El tipo del elemento, mediante doble despacho (un método por tipo) | El cliente, que inyecta la estrategia |

@@ -318,7 +318,7 @@ Una aclaración importante: la fachada **no es una capa que prohíbe**. El subsi
 - **Subsistemas** → `Inventario`, `MetodoPago`, `Envio` y `Notificador`.
 - **Cliente** → el controlador de checkout (web, móvil o admin).
 
-Se simplifica el flujo: no hay repositorio (podría ser un quinto subsistema, o el propio `ServicioPedidos` del [módulo 06](06-dip.md)); la fachada numera los pedidos con un contador que recibe al construirse; y el pedido se crea ya en estado `pagado`, porque solo se llega a ese punto después de cobrar.
+Se simplifica el flujo: no hay repositorio (podría ser un quinto subsistema, o el propio `ServicioPedidos` del [módulo 06](06-dip.md)); la fachada numera los pedidos con un contador que recibe al construirse; y el pedido se crea ya en estado `pagado`, porque solo se llega a ese punto después de cobrar. Además, el `Pedido` comparte la lista de líneas del carrito sin copiarla (por brevedad); como advierte el [módulo 11](11-prototype.md), en código real conviene copiarla para que el carrito siga siendo editable sin tocar el pedido.
 
 ### Diagrama
 
@@ -815,7 +815,7 @@ Adapter se centra en la **compatibilidad**: traduce la interfaz de un objeto a l
 Ambos envuelven un objeto, pero con fines distintos. El adapter **cambia** la interfaz para que encaje, porque el objeto adaptado no era compatible. El decorator **mantiene** la interfaz y añade comportamiento (logs, reintentos), de modo que se pueden apilar; Decorator se verá en el siguiente módulo.
 
 **P3. ¿Qué es un Adapter de objeto y qué uno de clase?**
-El de **objeto** usa composición: el adapter contiene una instancia del adaptado y delega; es la forma de este módulo y funciona en todos los lenguajes. El de **clase** usa herencia múltiple: el adapter hereda a la vez de la interfaz esperada y de la clase adaptada, lo que solo es posible en lenguajes como C++ o Python y lo acopla a una clase concreta. Por eso, y por preferir composición sobre herencia, casi siempre se usa el de objeto.
+El de **objeto** usa composición: el adapter contiene una instancia del adaptado y delega; es la forma de este módulo y funciona en todos los lenguajes. El de **clase** usa herencia: el adapter hereda de la clase adaptada e implementa la interfaz esperada (en C++ o Python puede heredar de ambas; en Java, TypeScript o PHP basta `extends Adaptado implements Interfaz`), así que queda acoplado a una clase concreta. Por eso, y por preferir composición sobre herencia, casi siempre se usa el de objeto.
 
 **P4. ¿Facade viola la Ley de Demeter o la refuerza?**
 La refuerza. La [Ley de Demeter](../glosario.md#ley-de-demeter) (hablar solo con los vecinos inmediatos) dice que el cliente no debería conocer ni recorrer los objetos internos de un subsistema. La fachada es ese único vecino: el cliente le habla a ella y ella conoce a los demás. Eso sí, la fachada conoce a todos los subsistemas, así que debe limitarse a coordinar.

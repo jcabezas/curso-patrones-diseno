@@ -1,6 +1,6 @@
 # De comportamiento: Observer, Mediator y Chain of Responsibility
 
-Los tres patrones de este módulo resuelven la misma pregunta desde ángulos distintos: cómo hacer que varios objetos **se comuniquen sin quedar atados unos a otros**. **Observer** avisa a muchos interesados cuando algo ocurre sin conocerlos, **Mediator** reemplaza una red de objetos que se hablan entre sí por un coordinador central y **Chain of Responsibility** pasa una solicitud por una fila de manejadores hasta que alguno la resuelve o la rechaza. Los tres refuerzan el [OCP](03-ocp.md) y el [SRP](02-srp.md). Retoman nombres de módulos anteriores: el `Pedido` que cambia de etapa con `EstadoPedido` del [módulo 16](16-strategy-state-template-method.md), el `Notificador` del [módulo 08](08-factory-method.md) y la idea de objetos que envuelven y delegan del [módulo 13](13-decorator-proxy.md), que la comparación del final usa para separar Chain de Decorator. Producen `Evento` (con `PedidoCreado`), `BusEventos` (con `suscribir(tipo, manejador)` y `publicar(evento)`), `MediadorCheckout` y la cadena `ValidadorPedido` (`ValidarStock` → `ValidarPago` → `ValidarDireccion`); más adelante, en el módulo de integración, se reutilizará `BusEventos`.
+Los tres patrones de este módulo resuelven la misma pregunta desde ángulos distintos: cómo hacer que varios objetos **se comuniquen sin quedar atados unos a otros**. **Observer** avisa a muchos interesados cuando algo ocurre sin conocerlos, **Mediator** reemplaza una red de objetos que se hablan entre sí por un coordinador central y **Chain of Responsibility** pasa una solicitud por una fila de manejadores hasta que alguno la resuelve o la rechaza. Los tres refuerzan el [OCP](03-ocp.md) y el [SRP](02-srp.md). Retoman nombres de módulos anteriores: el `Pedido` de los módulos anteriores, el `Notificador` del [módulo 08](08-factory-method.md) y la idea de objetos que envuelven y delegan del [módulo 13](13-decorator-proxy.md), que la comparación del final usa para separar Chain de Decorator. Producen `Evento` (con `PedidoCreado`), `BusEventos` (con `suscribir(tipo, manejador)` y `publicar(evento)`), `MediadorCheckout` y la cadena `ValidadorPedido` (`ValidarStock` → `ValidarPago` → `ValidarDireccion`); más adelante, en el módulo de integración, se reutilizará `BusEventos`.
 
 En Go, cada patrón de este módulo forma su propio `main.go` lógico: los bloques Go de una sección se leen de corrido y no repiten `package` ni `import`.
 
@@ -400,8 +400,6 @@ class SelectorPago:
 ```
 
 Tres componentes con referencias cruzadas son seis conexiones, y cada componente nuevo (un cupón, un seguro de envío) obliga a editar a todos los demás. Ninguno se puede reutilizar ni probar solo, porque arrastra a sus vecinos; y las reglas del checkout (qué pago admite cada despacho) quedan repartidas en tres clases. Esto es acoplamiento de muchos a muchos.
-
-> Se mantiene el checkout porque la pantalla de compra de la tienda ya tiene estos tres componentes que se condicionan entre sí; no hizo falta salir al ejemplo del chat de soporte.
 
 ### La idea en pocas palabras
 
@@ -980,7 +978,7 @@ func demoCadena() {
 }
 ```
 
-> **Nota Go:** en Go este patrón es el **middleware HTTP**: `type Middleware func(next http.Handler) http.Handler`. Cada middleware recibe el siguiente manejador y devuelve uno nuevo que decide si lo llama (`next.ServeHTTP(w, r)`) o responde y corta la cadena (un 401, por ejemplo). Es la misma cadena con funciones en lugar de structs; el ejemplo usa una firma propia (`Handler`) para no depender de `net/http`.
+> **Nota Go:** en Go este patrón se escribe como una pila de **middleware HTTP**: `type Middleware func(next http.Handler) http.Handler`. Cada middleware recibe el siguiente manejador y devuelve uno nuevo que decide si lo llama (`next.ServeHTTP(w, r)`) o responde y corta la cadena (un 401, por ejemplo). Es la misma cadena con funciones en lugar de structs; el ejemplo usa una firma propia (`Handler`) para no depender de `net/http`.
 
 ```go
 type Handler func(Pedido) string
@@ -1136,4 +1134,4 @@ Estructuralmente son parecidos: objetos que envuelven a otro y delegan. Un Decor
 Cuando se convierte en un God Object: acumula todas las reglas de la pantalla o del sistema, crece a cientos de líneas con un `if` por cada evento y todo cambio pasa por él. Entonces solo has movido el desorden de muchos objetos a uno. También es mal olor si media entre dos objetos solamente (una referencia directa bastaba) o si los colegas empiezan a tener reglas de negocio y el mediador solo reenvía. La salida es dividirlo por flujo o usar eventos.
 
 **P6. ¿Dónde ves estos patrones en software real?**
-Observer está en los eventos del DOM (`addEventListener` suscribe un callback y `removeEventListener` da de baja) y en los eventos de Node.js (`EventEmitter`). Chain of Responsibility es el middleware: Express, Koa, los `http.Handler` de Go o el pipeline de middleware de Laravel pasan la petición de un eslabón al siguiente y cualquiera puede cortarla con una respuesta. Mediator aparece en los controladores de pantallas de interfaz y en las torres de control de los frameworks de mensajería (el `MediatR` de .NET, por ejemplo).
+Observer está en los eventos del DOM (`addEventListener` suscribe un callback y `removeEventListener` da de baja) y en los eventos de Node.js (`EventEmitter`). Chain of Responsibility es la pila de middleware (cada middleware envuelve al siguiente como un Decorator; la pila completa, donde cualquiera puede cortar, es la cadena): Express, Koa, los `http.Handler` de Go o el pipeline de middleware de Laravel pasan la petición de un eslabón al siguiente y cualquiera puede cortarla con una respuesta. Mediator aparece en los controladores de pantallas de interfaz y en las torres de control de los frameworks de mensajería (el `MediatR` de .NET, por ejemplo).

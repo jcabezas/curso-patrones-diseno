@@ -1,6 +1,6 @@
 # Estructurales: Bridge
 
-En el [módulo 12](12-adapter-facade.md) vimos Adapter, que arregla una incompatibilidad que ya existe, y en el [módulo 13](13-decorator-proxy.md) wrappers que conservan la interfaz del objeto envuelto. **Bridge** resuelve un problema distinto: una clase que crece en **dos direcciones a la vez** y obliga a escribir una subclase por cada combinación. Aquí se retoma el tema de los canales del [módulo 08](08-factory-method.md) (email, SMS, push), pero ya no para decidir qué clase crear, sino para evitar que cada tipo de aviso se multiplique por cada canal. El patrón refuerza el [OCP](03-ocp.md) y produce los nombres `Aviso`, `AvisoPedido`, `AvisoPromocion`, `Canal`, `CanalEmail`, `CanalSMS` y `CanalPush`, que se reutilizarán más adelante.
+En el [módulo 12](12-adapter-facade.md) vimos Adapter, que arregla una incompatibilidad que ya existe, y en el [módulo 13](13-decorator-proxy.md) wrappers que conservan la interfaz del objeto envuelto. **Bridge** resuelve un problema distinto: una clase que crece en **dos direcciones a la vez** y obliga a escribir una subclase por cada combinación. Aquí se retoma el tema de los canales del [módulo 08](08-factory-method.md) (email, SMS, push), pero ya no para decidir qué clase crear, sino para evitar que cada tipo de aviso se multiplique por cada canal. El patrón refuerza el [OCP](03-ocp.md) y produce los nombres `Aviso`, `AvisoPedido`, `AvisoPromocion`, `Canal`, `CanalEmail`, `CanalSMS` y `CanalPush`.
 
 ## Bridge
 

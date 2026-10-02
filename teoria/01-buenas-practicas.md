@@ -348,10 +348,10 @@ class ProductoNoExiste(Exception):
     pass
 
 
-def obtener_producto(catalogo: dict[int, str], id: int) -> str:
-    if id not in catalogo:
-        raise ProductoNoExiste(f"producto {id} no existe")
-    return catalogo[id]
+def obtener_producto(catalogo: dict[int, str], id_producto: int) -> str:
+    if id_producto not in catalogo:
+        raise ProductoNoExiste(f"producto {id_producto} no existe")
+    return catalogo[id_producto]
 
 
 try:
@@ -384,7 +384,7 @@ func main() {
 
 > **Nota Go:** en Go no existen las excepciones para el flujo normal; el patrón `if err != nil` es la forma idiomática y hace visible cada punto donde algo puede fallar. TypeScript y PHP funcionan como Python: `throw`/`catch`.
 
-**Cuándo no aplicarlo.** No uses excepciones para el flujo normal ("no se encontró" en una búsqueda es un resultado esperado, no una excepción: devuelve `None`, `null` o un valor vacío). Y capturar `Exception` muy arriba solo para registrar y seguir suele ocultar defectos.
+**Cuándo no aplicarlo.** Distingue *buscar* de *obtener*. Una búsqueda que puede no encontrar nada ("no se encontró" es un resultado esperado) devuelve `None`, `null` o `(valor, bool)` en Go, no una excepción. Obtener un id que debía existir, como en los ejemplos de arriba, sí es un error. Y capturar `Exception` muy arriba solo para registrar y seguir suele ocultar defectos.
 
 ## Code smells
 
@@ -529,7 +529,7 @@ KISS trata de *cómo* resuelves algo: elegir el diseño más simple que funcione
 Dice que un objeto solo debe hablar con sus vecinos directos, no con los objetos de sus vecinos: `pedido.region_despacho()` en lugar de `pedido.cliente.direccion.comuna.region`. Evita que quien llama conozca la estructura interna, de modo que si esa estructura cambia, solo se edita un lugar y no veinte. Reduce el acoplamiento.
 
 **P4. Excepciones vs error como valor: ¿cuándo uso cada uno?**
-Las excepciones (Python, TypeScript, PHP) mantienen limpio el camino feliz y suben hasta quien sabe qué hacer, pero el flujo de error queda invisible. El error como valor (Go) obliga a revisar cada llamada y deja explícito dónde se puede fallar, a costa de más código repetitivo. Uso cada uno según el lenguaje y reservo ambos para situaciones realmente excepcionales, no para resultados esperados como "no encontrado".
+Las excepciones (Python, TypeScript, PHP) mantienen limpio el camino feliz y suben hasta quien sabe qué hacer, pero el flujo de error queda invisible. El error como valor (Go) obliga a revisar cada llamada y deja explícito dónde se puede fallar, a costa de más código repetitivo. Uso la vía normal de cada lenguaje: excepciones en Python, TypeScript y PHP, error como valor en Go. Si la ausencia es un resultado esperado (una búsqueda), devuelvo `None`/`null` o `(valor, bool)`; si rompe una precondición (obtener un id que debía existir), es un error.
 
 **P5. Nombra tres code smells y cómo los corriges.**
 Long method: lo divido en funciones con nombre propio, una por paso. Magic number: lo reemplazo por una constante con nombre, como `IVA_PORCENTAJE`. Feature envy: si un método usa más datos de otro objeto que del propio, lo muevo a ese objeto. Un smell no es un error; es una señal para revisar.

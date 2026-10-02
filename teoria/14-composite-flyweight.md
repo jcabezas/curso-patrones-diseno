@@ -1,6 +1,6 @@
 # Estructurales: Composite y Flyweight
 
-En el [módulo 13](13-decorator-proxy.md) vimos wrappers que conservan la interfaz del objeto envuelto. Este módulo reúne dos patrones estructurales que tratan con **muchos objetos a la vez**. **Composite** organiza objetos en un árbol (estructura donde cada elemento puede tener hijos; [glosario](../glosario.md#árbol)) para tratar igual a uno solo y a un grupo. **Flyweight** (peso mosca) comparte la parte repetida de miles de objetos para ahorrar memoria. Composite refuerza el [OCP](03-ocp.md) y el [LSP](04-lsp.md); Flyweight se apoya en el [SRP](02-srp.md). El primer patrón produce los nombres `ComponenteCatalogo`, `ProductoHoja` y `Combo`, que se reutilizarán más adelante, en el módulo de Visitor.
+En el [módulo 13](13-decorator-proxy.md) vimos wrappers que conservan la interfaz del objeto envuelto. Este módulo reúne dos patrones estructurales que tratan con **muchos objetos a la vez**. **Composite** organiza objetos en un árbol (estructura donde cada elemento puede tener hijos; [glosario](../glosario.md#árbol)) para tratar igual a uno solo y a un grupo. **Flyweight** (peso mosca) comparte la parte repetida de miles de objetos para ahorrar memoria. Composite refuerza el [OCP](03-ocp.md) y el [LSP](04-lsp.md); Flyweight se apoya en el [SRP](02-srp.md). El primer patrón produce los nombres `ComponenteCatalogo`, `ProductoHoja` y `Combo`; el módulo de Visitor vuelve a usar el nombre `Combo`, con su propia versión simplificada.
 
 ## Composite
 

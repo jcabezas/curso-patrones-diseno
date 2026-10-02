@@ -73,7 +73,7 @@ Ver también: [módulo 20](teoria/20-antipatrones-y-cierre.md)
 
 ## Chain of Responsibility
 
-Patrón de comportamiento que pasa una solicitud por una cadena de manejadores; cada uno decide si la procesa, la rechaza (cortando la cadena) o la pasa al siguiente. Es la forma del middleware.
+Patrón de comportamiento que pasa una solicitud por una cadena de manejadores; cada uno decide si la procesa, la rechaza (cortando la cadena) o la pasa al siguiente. Es la forma de la pila de middleware.
 
 Ver también: [módulo 17](teoria/17-observer-mediator-chain.md)
 
@@ -311,21 +311,21 @@ Patrón de comportamiento que representa las reglas de un lenguaje pequeño como
 
 Ver también: [módulo 19](teoria/19-visitor-interpreter.md)
 
-## Inyección de dependencias
-
-Técnica en la que una clase recibe de afuera las piezas que necesita (por constructor, método o propiedad) en lugar de crearlas ella misma. Es la forma más común de cumplir DIP.
-
-Ver también: [módulo 06](teoria/06-dip.md)
-
 ## Invariante
 
 Condición que siempre es verdadera sobre un objeto, antes y después de cada operación (por ejemplo, un precio nunca negativo). Las subclases deben conservarla.
 
 Ver también: [módulo 04](teoria/04-lsp.md)
 
+## Inyección de dependencias
+
+Técnica en la que una clase recibe de afuera las piezas que necesita (por constructor, método o propiedad) en lugar de crearlas ella misma. Es la forma más común de cumplir DIP.
+
+Ver también: [módulo 06](teoria/06-dip.md)
+
 ## IoC
 
-*Inversion of Control*: el control de crear y conectar los objetos lo tiene un marco o contenedor, no tu código. Un contenedor de IoC automatiza la inyección de dependencias y es opcional.
+*Inversion of Control*: el control del flujo (quién llama a quién y quién crea qué) lo tiene un marco o una pieza externa, no tu código. La inyección de dependencias y el principio de Hollywood son formas de IoC; un contenedor de IoC automatiza la inyección y es opcional.
 
 Ver también: [módulo 06](teoria/06-dip.md)
 
@@ -403,7 +403,7 @@ Ver también: [módulo 08](teoria/08-factory-method.md)
 
 ## Middleware
 
-Función o componente que envuelve al manejador de una petición para hacer algo antes y después (autenticar, registrar, medir) y luego delegar en el siguiente. Es un Decorator aplicado a funciones.
+Función o componente que envuelve al manejador de una petición para hacer algo antes y después (autenticar, registrar, medir) y luego delegar en el siguiente. Cada middleware envuelve al siguiente como un Decorator; la pila completa, donde cualquiera puede cortar, es una Chain of Responsibility.
 
 Ver también: [módulo 13](teoria/13-decorator-proxy.md)
 
@@ -443,17 +443,17 @@ Lo que debe cumplirse antes de llamar a un método para que funcione bien (por e
 
 Ver también: [módulo 04](teoria/04-lsp.md)
 
-## Prototype
-
-Patrón creacional que crea objetos copiando un objeto existente mediante un método `clonar()`, sin conocer su clase concreta ni sus campos. Lo delicado es que la copia sea profunda.
-
-Ver también: [módulo 11](teoria/11-prototype.md)
-
 ## Principio de Hollywood
 
 "No nos llames, te llamamos": el código de alto nivel llama al de bajo nivel y no al revés. Es la forma de inversión de control que usan Template Method y los frameworks.
 
 Ver también: [módulo 16](teoria/16-strategy-state-template-method.md)
+
+## Prototype
+
+Patrón creacional que crea objetos copiando un objeto existente mediante un método `clonar()`, sin conocer su clase concreta ni sus campos. Lo delicado es que la copia sea profunda.
+
+Ver también: [módulo 11](teoria/11-prototype.md)
 
 ## Proxy
 

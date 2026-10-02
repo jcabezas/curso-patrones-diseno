@@ -1,6 +1,6 @@
 # Módulo 20: Antipatrones y caso de cierre
 
-Este módulo cierra el curso con tres cosas. Primero, los **antipatrones**: lo que se ve cuando los patrones (o la falta de ellos) salen mal. Después, el criterio para decidir cuándo **no** usar un patrón, con un diagrama de decisión y una tabla que resume los 23 patrones del libro de la Banda de los Cuatro (GoF) que viste en los módulos 07 a 19. Y al final, un **caso de cierre**: el checkout de la tienda armado con cinco patrones que ya conoces, para ver cómo colaboran en un solo flujo.
+Este módulo cierra el curso con tres cosas. Primero, los **antipatrones**: lo que se ve cuando los patrones (o la falta de ellos) salen mal. Después, el criterio para decidir cuándo **no** usar un patrón, con un diagrama de decisión y una tabla que resume los 23 patrones del libro de la Banda de los Cuatro (GoF) que viste en los módulos 07 a 19. Y al final, un **caso de cierre**: el checkout de la tienda armado con seis patrones que ya conoces, para ver cómo colaboran en un solo flujo.
 
 ## Antipatrones
 
@@ -79,7 +79,7 @@ Singleton queda fuera a propósito: casi nunca es el candidato correcto (módulo
 | Bridge | Estructural | Variar de forma independiente dos dimensiones de una clase | OCP | [15](15-bridge.md) |
 | Strategy | Comportamiento | Intercambiar algoritmos en tiempo de ejecución detrás de una interfaz | OCP | [16](16-strategy-state-template-method.md) |
 | State | Comportamiento | Cambiar el comportamiento de un objeto según su estado interno | SRP, OCP | [16](16-strategy-state-template-method.md) |
-| Template Method | Comportamiento | Fijar el esqueleto de un algoritmo y dejar que las subclases rellenen pasos | DIP (principio de Hollywood) | [16](16-strategy-state-template-method.md) |
+| Template Method | Comportamiento | Fijar el esqueleto de un algoritmo y dejar que las subclases rellenen pasos | DIP; el principio de Hollywood es una forma de IoC | [16](16-strategy-state-template-method.md) |
 | Observer | Comportamiento | Avisar a muchos interesados de un cambio sin que el emisor los conozca | OCP, DIP | [17](17-observer-mediator-chain.md) |
 | Mediator | Comportamiento | Reemplazar una red de objetos que se hablan entre sí por un coordinador | SRP | [17](17-observer-mediator-chain.md) |
 | Chain of Responsibility | Comportamiento | Pasar una solicitud por una fila de manejadores independientes | SRP, OCP | [17](17-observer-mediator-chain.md) |
@@ -131,7 +131,6 @@ sequenceDiagram
     S-->>F: Pagado
     F->>N: notificar(email, mensaje)
     F->>B: publicar(PedidoCreado)
-    B-->>F: 3 suscriptores avisados
     F-->>Cliente: Pedido 900 confirmado
 ```
 
@@ -144,6 +143,7 @@ Para que el ejemplo corra solo y quepa en pantalla, cada pieza viene **simplific
 - `crearNotificador` solo conoce el canal `email` (el [módulo 08](08-factory-method.md) incluye `sms` y `push`).
 - `BusEventos` solo tiene `suscribir` y `publicar`, sin dar de baja.
 - `Pedido` solo guarda `id` y el total de la mercadería; el cobro suma el envío aparte.
+- En Go, `CheckoutFacade` guarda el campo `envio` como `EstrategiaEnvio` (la interfaz del módulo 16) y no como el `*Envio` concreto del módulo 12.
 - En Python los identificadores son `id_producto`, `id_pedido` y `id_cliente`, para no usar `id`, que ya es una función del lenguaje.
 
 El uso confirma el pedido 900 y luego **intenta confirmar el mismo carrito otra vez**. El inventario inicial tiene solo 2 gorros, de modo que la segunda confirmación falla antes de cobrar. Si el orden de la fachada estuviera mal (cobrar antes de revisar el stock), `cobrado` tendría dos montos; si el bus no funcionara, la lista de avisados estaría vacía; si los decoradores se compusieran al revés, el total no sería 29790.
@@ -892,6 +892,7 @@ func main() {
 	var avisados []string
 	bus := NuevoBus()
 	for _, nombre := range []string{"inventario", "email", "analítica"} {
+		// Go 1.22+: cada iteración tiene su propio nombre
 		bus.Suscribir("PedidoCreado", func(Evento) { avisados = append(avisados, nombre) })
 	}
 	notificador, err := NuevoNotificador("email")
@@ -1249,4 +1250,4 @@ Una Facade como entrada única que coordina stock, precio, pago y estado, para q
 En Python, Iterator es el `for` con generadores y Strategy suele ser pasar una función; Singleton casi es un módulo. En Go, Strategy es un tipo función, Builder es functional options, Factory Method es una función `NuevoX` y Iterator es `iter.Seq`. En TypeScript, Strategy, Command y Observer se resuelven bien con funciones y closures. No desaparece la idea, solo la jerarquía de clases que la implementaba.
 
 **P6. Explica SOLID con un ejemplo en un minuto.**
-Con la tienda: SRP, `Pedido` calcula su total y no envía correos; OCP, un envío nuevo es una clase nueva que implementa `EstrategiaEnvio`, sin editar el checkout. LSP, un `Combo` se usa donde se espera un producto sin sorpresas; ISP, quien solo notifica depende de `Notificador` y no de una interfaz gorda. DIP, el servicio depende de `MetodoPago` y no de `Webpay`.
+Con la tienda: SRP, `Pedido` calcula su total y no envía correos; OCP, un envío nuevo es una clase nueva que implementa `EstrategiaEnvio`, sin editar el checkout. LSP, un `Combo` se usa donde se espera un `ComponenteCatalogo` sin sorpresas; ISP, quien solo notifica depende de `Notificador` y no de una interfaz gorda. DIP, el servicio depende de `MetodoPago` y no de `Webpay`.
