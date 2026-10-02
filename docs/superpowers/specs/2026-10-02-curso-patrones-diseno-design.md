@@ -10,7 +10,7 @@ Curso autodidacta en español neutro que explica de forma clara y simple los pri
 - **Código:** fragmentos dentro del Markdown, sin archivos ejecutables ni tests. Consecuencia: no hay garantía de compilación automática; se revisa a mano la coherencia entre los 4 lenguajes.
 - **Dominio hilo conductor:** tienda online (carrito, pedidos, pagos, descuentos, notificaciones, inventario). Excepción: un patrón puede usar otro ejemplo solo si la tienda no lo representa de forma natural (p. ej. Composite con categorías ya cabe; Interpreter puede requerir un mini-lenguaje de reglas de descuento).
 - **Estructura:** principios primero, catálogo después (enfoque A). Cada patrón se conecta con el principio SOLID que aplica o refuerza.
-- **Lenguajes:** Python, TypeScript, Go, PHP. Go se escribe de forma idiomática (interfaces implícitas, embedding, funciones de primera clase) con una nota cuando un patrón se simplifica o casi desaparece (p. ej. Strategy como una función). *Asumido porque el usuario descartó la pregunta; modificable.*
+- **Lenguajes:** Python, TypeScript, Go, PHP. Go se escribe de forma idiomática (interfaces implícitas, embedding, funciones de primera clase) con una nota cuando un patrón se simplifica o casi desaparece (p. ej. Strategy como una función). *Confirmado por el usuario.*
 - **Estilo:** español neutro (nunca voseo), diagramas Mermaid (labels con paréntesis entre comillas), términos técnicos con glosa de una frase en la primera aparición por módulo y enlace a `glosario.md`, término en inglés cuando es el estándar. Referencias entre módulos: hacia atrás enlace real, hacia adelante texto plano. Comandos en PowerShell, git en `main`.
 
 ## Estructura del repositorio
