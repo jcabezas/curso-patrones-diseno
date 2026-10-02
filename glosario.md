@@ -209,6 +209,12 @@ Mecanismo por el que una clase reutiliza y extiende a otra (relación "es un"). 
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
 
+## Hook
+
+Paso de un algoritmo con una implementación por defecto que las subclases (o quien lo configura) pueden sobrescribir, pero no están obligadas a ello. En Template Method se distingue de los pasos abstractos, que sí son obligatorios.
+
+Ver también: [módulo 16](teoria/16-strategy-state-template-method.md)
+
 ## Implementor
 
 En Bridge, la interfaz de bajo nivel que hace el trabajo real y a la que la abstracción delega (por ejemplo, `Canal` para entregar un aviso). Sus implementaciones concretas son intercambiables.
@@ -287,6 +293,12 @@ Valor literal sin nombre dentro del código (`19`, `30`) cuyo significado nadie 
 
 Ver también: [módulo 01](teoria/01-buenas-practicas.md)
 
+## Máquina de estados
+
+Modelo de un objeto como un conjunto de estados y las transiciones permitidas entre ellos (`Pendiente` → `Pagado` → `Enviado`). Las transiciones que no existen en el modelo se rechazan. State es su implementación orientada a objetos.
+
+Ver también: [módulo 16](teoria/16-strategy-state-template-method.md)
+
 ## Método creador
 
 El método de un Factory Method que crea y devuelve el producto (por ejemplo `crearNotificador()`). La clase base lo declara y cada subclase lo sobrescribe para elegir qué clase concreta se instancia.
@@ -335,6 +347,12 @@ Patrón creacional que crea objetos copiando un objeto existente mediante un mé
 
 Ver también: [módulo 11](teoria/11-prototype.md)
 
+## Principio de Hollywood
+
+"No nos llames, te llamamos": el código de alto nivel llama al de bajo nivel y no al revés. Es la forma de inversión de control que usan Template Method y los frameworks.
+
+Ver también: [módulo 16](teoria/16-strategy-state-template-method.md)
+
 ## Proxy
 
 Patrón estructural que ofrece un sustituto con la misma interfaz que el objeto real y controla el acceso a él (caché, carga diferida, permisos, registro).
@@ -377,11 +395,29 @@ Ver también: [módulo 02](teoria/02-srp.md)
 
 Ver también: [módulo 02](teoria/02-srp.md)
 
+## State
+
+Patrón de comportamiento que permite a un objeto cambiar su comportamiento cuando cambia su estado interno, delegando en un objeto por cada estado. Cada estado devuelve el siguiente o rechaza la transición.
+
+Ver también: [módulo 16](teoria/16-strategy-state-template-method.md)
+
+## Strategy
+
+Patrón de comportamiento que encapsula una familia de algoritmos intercambiables detrás de una interfaz común, de modo que el cliente elige cuál usar en tiempo de ejecución.
+
+Ver también: [módulo 16](teoria/16-strategy-state-template-method.md)
+
 ## Subsistema
 
 Conjunto de clases que colaboran para una tarea y tienen interfaces propias; una fachada se pone delante de él para simplificar su uso.
 
 Ver también: [módulo 12](teoria/12-adapter-facade.md)
+
+## Template Method
+
+Patrón de comportamiento en el que una clase base define el esqueleto de un algoritmo y las subclases rellenan algunos pasos sin cambiar su orden. Se apoya en la herencia y en el principio de Hollywood.
+
+Ver también: [módulo 16](teoria/16-strategy-state-template-method.md)
 
 ## Test double
 
