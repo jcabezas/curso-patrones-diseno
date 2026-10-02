@@ -74,6 +74,12 @@ Ocultar el estado interno de un objeto y exponer solo operaciones controladas, d
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
 
+## Estado global
+
+Datos que cualquier parte del programa puede leer o modificar desde cualquier lugar (una variable global, un Singleton mutable). Esconde dependencias y hace que las pruebas se contaminen entre sí.
+
+Ver también: [módulo 07](teoria/07-singleton.md)
+
 ## Extensión
 
 Agregar comportamiento nuevo escribiendo código nuevo (una clase que implementa una interfaz existente) sin editar el código que ya funciona.
@@ -194,6 +200,12 @@ Heurística para abstraer: la primera vez se escribe, la segunda se tolera la re
 
 Ver también: [módulo 01](teoria/01-buenas-practicas.md)
 
+## Singleton
+
+Patrón creacional que garantiza que una clase tenga una única instancia y ofrece un punto de acceso global a ella. Casi siempre es preferible crear una instancia única en el composition root e inyectarla.
+
+Ver también: [módulo 07](teoria/07-singleton.md)
+
 ## SOLID
 
 Cinco principios de diseño orientado a objetos (SRP, OCP, LSP, ISP, DIP) que ayudan a escribir código fácil de cambiar y de probar.
@@ -211,6 +223,12 @@ Ver también: [módulo 02](teoria/02-srp.md)
 Objeto falso y simple (en memoria, que registra lo que recibe) que reemplaza a una dependencia real durante una prueba: un repositorio en memoria, un notificador falso.
 
 Ver también: [módulo 06](teoria/06-dip.md)
+
+## Thread-safe
+
+Código que se comporta bien cuando varios hilos lo ejecutan a la vez (por ejemplo, que no crea dos instancias de un Singleton ni corrompe datos compartidos).
+
+Ver también: [módulo 07](teoria/07-singleton.md)
 
 ## UML
 
