@@ -20,6 +20,12 @@ Qué tanto depende un módulo de otro. Con acoplamiento bajo, cambiar una pieza 
 
 Ver también: [módulo 01](teoria/01-buenas-practicas.md)
 
+## Builder
+
+Patrón creacional que arma un objeto complejo paso a paso y lo entrega al final con `construir()`, ya validado. Evita constructores con muchos parámetros y objetos a medio armar.
+
+Ver también: [módulo 10](teoria/10-builder.md)
+
 ## Clase
 
 Molde que define los datos y el comportamiento de un tipo de objeto. Un objeto es una instancia concreta de una clase.
@@ -49,6 +55,12 @@ Ver también: [módulo 00](teoria/00-introduccion.md)
 Único lugar, cerca del arranque del programa, que conoce las clases concretas, las crea y las conecta entre sí. El resto del código solo ve interfaces.
 
 Ver también: [módulo 06](teoria/06-dip.md)
+
+## Constructor telescópico
+
+Constructor con una larga fila de parámetros opcionales que crece con cada opción nueva. Es fácil pasar un valor en la posición equivocada y no hay dónde validar el conjunto.
+
+Ver también: [módulo 10](teoria/10-builder.md)
 
 ## Contrato
 
@@ -104,6 +116,12 @@ Conjunto de objetos pensados para usarse juntos, como Webpay, el antifraude loca
 
 Ver también: [módulo 09](teoria/09-abstract-factory.md)
 
+## Functional options
+
+Idioma de Go para construir objetos con opciones: la función constructora recibe los datos obligatorios y una lista variable de funciones que modifican el objeto (`NuevoPedido(cliente, ConCupon("X"))`). Reemplaza al Builder clásico.
+
+Ver también: [módulo 10](teoria/10-builder.md)
+
 ## God Object
 
 Clase que lo sabe y lo hace todo: acumula muchas responsabilidades no relacionadas y todo el sistema depende de ella. Es la violación típica de SRP.
@@ -121,6 +139,12 @@ Ver también: [módulo 00](teoria/00-introduccion.md)
 Contrato que lista las operaciones que un tipo promete ofrecer, sin decir cómo se implementan.
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
+
+## Interfaz fluida
+
+Estilo de API en que cada método devuelve el propio objeto, de modo que las llamadas se encadenan y se leen casi como una frase (`b.conCliente(x).conCupon(y).construir()`).
+
+Ver también: [módulo 10](teoria/10-builder.md)
 
 ## Interfaz gorda
 
