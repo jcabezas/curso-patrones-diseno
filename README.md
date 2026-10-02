@@ -30,7 +30,7 @@ Curso autodidacta, nivel entrevista: entender cada concepto, saber explicarlo y 
 - [x] 10 [Builder](teoria/10-builder.md)
 - [x] 11 [Prototype](teoria/11-prototype.md)
 - [x] 12 [Adapter y Facade](teoria/12-adapter-facade.md)
-- [ ] 13 [Decorator y Proxy](teoria/13-decorator-proxy.md)
+- [x] 13 [Decorator y Proxy](teoria/13-decorator-proxy.md)
 - [ ] 14 [Composite y Flyweight](teoria/14-composite-flyweight.md)
 - [ ] 15 [Bridge](teoria/15-bridge.md)
 - [ ] 16 [Strategy, State y Template Method](teoria/16-strategy-state-template-method.md)

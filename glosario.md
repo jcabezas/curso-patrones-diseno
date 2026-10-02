@@ -86,6 +86,12 @@ Copia de un objeto que duplica solo el objeto, pero deja sus campos de referenci
 
 Ver también: [módulo 11](teoria/11-prototype.md)
 
+## Decorator
+
+Patrón estructural que envuelve un objeto para agregarle comportamiento en tiempo de ejecución, manteniendo la misma interfaz, de modo que se pueden apilar varios.
+
+Ver también: [módulo 13](teoria/13-decorator-proxy.md)
+
 ## DIP
 
 *Dependency Inversion Principle*: los módulos de alto nivel no deben depender de los de bajo nivel; ambos deben depender de abstracciones. La regla define el contrato y el detalle lo implementa.
@@ -206,6 +212,12 @@ Ver también: [módulo 05](teoria/05-isp.md)
 
 Ver también: [módulo 01](teoria/01-buenas-practicas.md)
 
+## Lazy loading
+
+Carga diferida: crear u obtener un recurso costoso solo cuando se usa por primera vez, no al inicio. Un proxy virtual es una forma de implementarla.
+
+Ver también: [módulo 13](teoria/13-decorator-proxy.md)
+
 ## Ley de Demeter
 
 Un objeto solo debe hablar con sus vecinos inmediatos, no con los objetos de sus vecinos (`pedido.region_despacho()` en lugar de `pedido.cliente.direccion.comuna.region`). Reduce el acoplamiento.
@@ -229,6 +241,12 @@ Ver también: [módulo 01](teoria/01-buenas-practicas.md)
 El método de un Factory Method que crea y devuelve el producto (por ejemplo `crearNotificador()`). La clase base lo declara y cada subclase lo sobrescribe para elegir qué clase concreta se instancia.
 
 Ver también: [módulo 08](teoria/08-factory-method.md)
+
+## Middleware
+
+Función o componente que envuelve al manejador de una petición para hacer algo antes y después (autenticar, registrar, medir) y luego delegar en el siguiente. Es un Decorator aplicado a funciones.
+
+Ver también: [módulo 13](teoria/13-decorator-proxy.md)
 
 ## OCP
 
@@ -265,6 +283,12 @@ Ver también: [módulo 04](teoria/04-lsp.md)
 Patrón creacional que crea objetos copiando un objeto existente mediante un método `clonar()`, sin conocer su clase concreta ni sus campos. Lo delicado es que la copia sea profunda.
 
 Ver también: [módulo 11](teoria/11-prototype.md)
+
+## Proxy
+
+Patrón estructural que ofrece un sustituto con la misma interfaz que el objeto real y controla el acceso a él (caché, carga diferida, permisos, registro).
+
+Ver también: [módulo 13](teoria/13-decorator-proxy.md)
 
 ## Razón para cambiar
 
