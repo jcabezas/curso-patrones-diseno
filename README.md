@@ -6,7 +6,7 @@ Curso autodidacta, nivel entrevista: entender cada concepto, saber explicarlo y 
 
 - `teoria/` — un módulo por archivo, en el orden del temario.
 - `glosario.md` — términos técnicos.
-- `preguntas-entrevista.md` — todas las preguntas juntas (generado).
+- [`preguntas-entrevista.md`](preguntas-entrevista.md) — todas las preguntas juntas (generado).
 
 ## Convenciones
 

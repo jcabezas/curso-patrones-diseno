@@ -23,6 +23,12 @@ GRUPOS = [
 ]
 
 
+def reubicar(cuerpo):
+    """Los enlaces de los módulos son relativos a teoria/; el consolidado vive en la raíz."""
+    cuerpo = cuerpo.replace("](../", "](")
+    return re.sub(r"\]\((?!https?:|#|teoria/|glosario\.md)([^)/]+\.md)", lambda m: "](teoria/" + m.group(1), cuerpo)
+
+
 def extraer(num):
     nombre = MODULOS[num][0]
     texto = (TEORIA / f"{nombre}.md").read_text(encoding="utf-8")
@@ -30,7 +36,7 @@ def extraer(num):
     m = re.search(rf"(?ms)^## {re.escape(PREGUNTAS)}\s*\n(.*?)(?=^## |\Z)", texto)
     if not m:
         raise SystemExit(f"módulo {num:02d}: no tiene '## {PREGUNTAS}'")
-    return nombre, titulo, m.group(1).strip()
+    return nombre, titulo, reubicar(m.group(1).strip())
 
 
 def main():
@@ -45,7 +51,7 @@ def main():
             out.append(f"\n### {titulo} ([módulo {n:02d}](teoria/{nombre}.md))\n\n{cuerpo}\n")
     transv = TEORIA / "_transversales.md"
     if transv.exists():
-        out.append("\n## Preguntas transversales\n\n" + transv.read_text(encoding="utf-8").strip() + "\n")
+        out.append("\n## Preguntas transversales\n\n" + reubicar(transv.read_text(encoding="utf-8").strip()) + "\n")
     destino = RAIZ / "preguntas-entrevista.md"
     destino.write_text("\n".join(out), encoding="utf-8", newline="\n")
     print(f"escrito {destino.name}")
