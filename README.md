@@ -34,7 +34,7 @@ Curso autodidacta, nivel entrevista: entender cada concepto, saber explicarlo y 
 - [x] 14 [Composite y Flyweight](teoria/14-composite-flyweight.md)
 - [x] 15 [Bridge](teoria/15-bridge.md)
 - [x] 16 [Strategy, State y Template Method](teoria/16-strategy-state-template-method.md)
-- [ ] 17 [Observer, Mediator y Chain of Responsibility](teoria/17-observer-mediator-chain.md)
+- [x] 17 [Observer, Mediator y Chain of Responsibility](teoria/17-observer-mediator-chain.md)
 - [ ] 18 [Command, Memento e Iterator](teoria/18-command-memento-iterator.md)
 - [ ] 19 [Visitor e Interpreter](teoria/19-visitor-interpreter.md)
 - [ ] 20 [Antipatrones y caso de cierre](teoria/20-antipatrones-y-cierre.md)

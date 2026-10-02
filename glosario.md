@@ -47,6 +47,18 @@ Patrón creacional que arma un objeto complejo paso a paso y lo entrega al final
 
 Ver también: [módulo 10](teoria/10-builder.md)
 
+## Callback
+
+Función que se entrega a otro código para que la llame más tarde, cuando ocurra algo. En Observer, cada suscriptor se registra con un callback; en Go y JavaScript es un valor de primera clase.
+
+Ver también: [módulo 17](teoria/17-observer-mediator-chain.md)
+
+## Chain of Responsibility
+
+Patrón de comportamiento que pasa una solicitud por una cadena de manejadores; cada uno decide si la procesa, la rechaza (cortando la cadena) o la pasa al siguiente. Es la forma del middleware.
+
+Ver también: [módulo 17](teoria/17-observer-mediator-chain.md)
+
 ## Clase
 
 Molde que define los datos y el comportamiento de un tipo de objeto. Un objeto es una instancia concreta de una clase.
@@ -154,6 +166,12 @@ Ver también: [módulo 07](teoria/07-singleton.md)
 En Flyweight, la parte del estado que es igual para muchos objetos y no cambia (como la descripción y la imagen de un tipo de producto). Es inmutable y se comparte.
 
 Ver también: [módulo 14](teoria/14-composite-flyweight.md)
+
+## Evento
+
+Objeto inmutable que describe algo que ya ocurrió en el sistema (`PedidoCreado`). El publicador lo emite y los suscriptores reaccionan a él.
+
+Ver también: [módulo 17](teoria/17-observer-mediator-chain.md)
 
 ## Explosión de subclases
 
@@ -299,6 +317,12 @@ Modelo de un objeto como un conjunto de estados y las transiciones permitidas en
 
 Ver también: [módulo 16](teoria/16-strategy-state-template-method.md)
 
+## Mediator
+
+Patrón de comportamiento que centraliza la comunicación entre varios objetos en un mediador, de modo que los colegas solo lo conocen a él. Convierte referencias de muchos a muchos en uno a muchos, con el riesgo de crear un God Object.
+
+Ver también: [módulo 17](teoria/17-observer-mediator-chain.md)
+
 ## Método creador
 
 El método de un Factory Method que crea y devuelve el producto (por ejemplo `crearNotificador()`). La clase base lo declara y cada subclase lo sobrescribe para elegir qué clase concreta se instancia.
@@ -310,6 +334,12 @@ Ver también: [módulo 08](teoria/08-factory-method.md)
 Función o componente que envuelve al manejador de una petición para hacer algo antes y después (autenticar, registrar, medir) y luego delegar en el siguiente. Es un Decorator aplicado a funciones.
 
 Ver también: [módulo 13](teoria/13-decorator-proxy.md)
+
+## Observer
+
+Patrón de comportamiento en el que un sujeto notifica a una lista de suscriptores cuando ocurre un evento, sin conocer qué hace cada uno. Permite agregar interesados sin editar al publicador.
+
+Ver también: [módulo 17](teoria/17-observer-mediator-chain.md)
 
 ## OCP
 
@@ -358,6 +388,12 @@ Ver también: [módulo 16](teoria/16-strategy-state-template-method.md)
 Patrón estructural que ofrece un sustituto con la misma interfaz que el objeto real y controla el acceso a él (caché, carga diferida, permisos, registro).
 
 Ver también: [módulo 13](teoria/13-decorator-proxy.md)
+
+## Pub/Sub
+
+*Publish/Subscribe*: variante de Observer con un intermediario (broker o bus) que desacopla a publicadores y suscriptores por completo; suele ser asíncrono y puede cruzar procesos (Kafka, Redis, RabbitMQ).
+
+Ver también: [módulo 17](teoria/17-observer-mediator-chain.md)
 
 ## Razón para cambiar
 
