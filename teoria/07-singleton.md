@@ -176,11 +176,11 @@ func main() {
 }
 ```
 
-> **Nota Go:** `sync.Once` ejecuta la función que recibe **exactamente una vez**, aunque cientos de goroutines llamen a `Obtener()` al mismo tiempo; las que llegan después esperan a que termine y ven el resultado ya escrito. Es la forma idiomática de inicializar de forma perezosa y segura, sin escribir el candado a mano. Go tampoco tiene constructores privados: se limita el acceso a nivel de paquete dejando `instancia` en minúscula (no exportada) y exponiendo solo `Obtener()`. Y como un paquete ya se inicializa una sola vez, a menudo basta una variable de paquete creada al arrancar.
+> **Nota Go:** `sync.Once` ejecuta la función que recibe **exactamente una vez**, aunque cientos de goroutines llamen a `Obtener()` al mismo tiempo; las que llegan después esperan a que termine y ven el resultado ya escrito. Es la forma idiomática de inicializar de forma perezosa y segura, sin escribir el candado a mano. Go tampoco tiene constructores privados: se limita el acceso a nivel de paquete dejando `instancia` en minúscula (no exportada) y exponiendo solo `Obtener()`. Ojo: como el tipo y sus campos están exportados, otro paquete puede crear otra instancia (`&ConfiguracionTienda{Iva: 19}`); para impedirlo, el tipo se deja no exportado (`configuracionTienda`) y solo se expone `Obtener()` (o una interfaz). Y como un paquete ya se inicializa una sola vez, a menudo basta una variable de paquete creada al arrancar.
 
 #### PHP
 
-En PHP el patrón clásico usa `private __construct` y un método `static getInstance()`. También se bloquea `__clone` para que nadie haga una segunda copia. Cada petición HTTP corre con su propia memoria, así que la "única instancia" lo es solo dentro de esa petición, no entre peticiones.
+En PHP el patrón clásico usa `private __construct` y un método `static getInstance()`. También se bloquea `__clone` para que nadie haga una segunda copia, y `__wakeup` lanza una excepción para que `unserialize` tampoco pueda crear otra. Cada petición HTTP corre con su propia memoria, así que la "única instancia" lo es solo dentro de esa petición, no entre peticiones.
 
 ```php
 <?php
@@ -199,6 +199,11 @@ class ConfiguracionTienda
     }
 
     private function __clone() {}
+
+    public function __wakeup(): void
+    {
+        throw new \LogicException("No se puede deserializar un Singleton");
+    }
 
     public static function getInstance(): ConfiguracionTienda
     {
@@ -243,4 +248,4 @@ Porque es estado global disfrazado. Las clases que lo usan esconden esa dependen
 La principal es crear una sola instancia en el composition root e inyectarla por constructor: se mantiene la unicidad sin el acceso global, y la dependencia es explícita y reemplazable (DIP). Otras son el módulo como singleton en Python y TypeScript (una constante exportada) o un contenedor de dependencias que registre el servicio con vida única. En los tres casos se conserva la ventaja (un único objeto) y se evita la desventaja (estado global).
 
 **P4. ¿En qué se diferencia un Singleton de una variable global?**
-Las dos son accesibles desde cualquier parte, pero el Singleton agrega dos garantías: solo puede existir una instancia (el constructor es privado) y se crea de forma perezosa, cuando se pide por primera vez, en lugar de existir desde el arranque. A cambio hereda los mismos defectos del estado global: dependencias ocultas y pruebas difíciles. Es una variable global más ordenada, pero no elimina el acoplamiento.
+Las dos son accesibles desde cualquier parte, pero el Singleton agrega dos garantías: solo puede existir una instancia (el constructor es privado) y la clase controla cuándo se crea (a menudo de forma perezosa, al pedirla por primera vez, en lugar de existir desde el arranque). A cambio hereda los mismos defectos del estado global: dependencias ocultas y pruebas difíciles. Es una variable global más ordenada, pero no elimina el acoplamiento.

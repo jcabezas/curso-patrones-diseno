@@ -38,7 +38,7 @@ Piensa en comprar un kit de muebles de la misma línea: la mesa, las sillas y el
 - **Fábricas concretas** → `FabricaChile` (Webpay, antifraude local, boleta SII) y `FabricaInternacional` (tarjeta, antifraude global, invoice).
 - **Productos abstractos** → `ProcesadorPago` (el `MetodoPago` del dominio), `Antifraude` y `DocumentoTributario`.
 - **Productos concretos** → `Webpay`, `TarjetaInternacional`, `AntifraudeLocal`, `AntifraudeGlobal`, `BoletaSII`, `Invoice`.
-- **Cliente** → `cliente(fabrica, monto)`: usa solo las interfaces.
+- **Cliente** → `cliente(fabrica, monto)` (en Go `usarFabrica`, porque `Cliente` ya es un tipo del dominio): usa solo las interfaces.
 
 ### Diagrama
 
@@ -394,7 +394,7 @@ func (FabricaInternacional) CrearDocumentoTributario() DocumentoTributario {
 ```
 
 ```go
-func Cliente(fabrica FabricaRegional, monto int) string {
+func usarFabrica(fabrica FabricaRegional, monto int) string {
 	pago := fabrica.CrearProcesadorPago()
 	antifraude := fabrica.CrearAntifraude()
 	documento := fabrica.CrearDocumentoTributario()
@@ -405,11 +405,11 @@ func Cliente(fabrica FabricaRegional, monto int) string {
 }
 
 func main() {
-	fmt.Println("Chile:", Cliente(FabricaChile{}, 19990))
+	fmt.Println("Chile:", usarFabrica(FabricaChile{}, 19990))
 	// => Chile: Webpay + Boleta SII
-	fmt.Println("Internacional:", Cliente(FabricaInternacional{}, 19990))
+	fmt.Println("Internacional:", usarFabrica(FabricaInternacional{}, 19990))
 	// => Internacional: Tarjeta + Invoice
-	fmt.Println("Chile:", Cliente(FabricaChile{}, 2_000_000))
+	fmt.Println("Chile:", usarFabrica(FabricaChile{}, 2_000_000))
 	// => Chile: rechazado
 }
 ```

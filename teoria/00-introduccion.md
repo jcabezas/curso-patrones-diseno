@@ -277,7 +277,7 @@ func main() {
 }
 ```
 
-> **Nota Go:** Go no tiene clases ni herencia. Un `struct` con métodos cumple el papel de la clase, y la reutilización se logra con composición (un struct dentro de otro). Para no repetir `package` e `import`, los módulos siguientes solo los muestran cuando hacen falta para entender el ejemplo.
+> **Nota Go:** Go no tiene clases ni herencia. Un `struct` con métodos cumple el papel de la clase, y la reutilización se logra con composición (un struct dentro de otro). Los bloques de Go de un módulo (o de un patrón) forman un solo `main.go` lógico: el primero abre con `package main` y el `import`, y los demás no los repiten.
 
 #### PHP
 
@@ -305,6 +305,10 @@ final class ItemCarrito
         return $this->producto->precio * $this->cantidad;
     }
 }
+```
+
+```php
+<?php
 
 final class Carrito
 {

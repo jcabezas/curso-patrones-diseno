@@ -247,7 +247,9 @@ type ProductoDigital struct {
 type Vendible interface{ PrecioVenta() int }
 
 type Despachable interface{ CalcularEnvio() int }
+```
 
+```go
 func TotalProductos(productos []Vendible) int {
 	total := 0
 	for _, p := range productos {

@@ -60,7 +60,7 @@ Para que `clonar()` sea seguro, casi siempre debe ser **profunda**.
 - **Prototipo concreto** → `Pedido`: implementa `clonar()` con copia profunda.
 - **Cliente** → el código de "repetir pedido": clona y edita la copia.
 
-Una diferencia deliberada con el módulo anterior: el `Pedido` del Builder era **inmutable**, así que copiarlo superficialmente habría sido inofensivo (nadie podía modificar la lista compartida). Aquí el `Pedido` es **mutable**: tiene `id`, `items` y `nota` que se pueden cambiar después de crearlo, y por eso el bug de la lista compartida se manifiesta. Además se simplifica el dominio fijo: no lleva `cliente` ni `estado`, ni calcula `total()`, para centrar el módulo en la copia. Este `Pedido.clonar()` se reutilizará más adelante, en el módulo de Memento, para guardar "fotos" del estado de un pedido.
+Una diferencia deliberada con el módulo anterior: el `Pedido` del Builder era **inmutable**, así que copiarlo superficialmente habría sido inofensivo (nadie podía modificar la lista compartida). Aquí el `Pedido` es **mutable**: tiene `id`, `items` y `nota` que se pueden cambiar después de crearlo, y por eso el bug de la lista compartida se manifiesta. Además se simplifica el dominio fijo: no lleva `cliente` ni `estado`, ni calcula `total()`, para centrar el módulo en la copia. Este `Pedido.clonar()` se comparará con Memento más adelante, que también guarda "fotos" del estado de un objeto.
 
 ### Diagrama
 
@@ -88,7 +88,7 @@ classDiagram
 
 ### Código
 
-El uso es el mismo en los cuatro lenguajes: se clona un pedido de 2 items, se le asigna otro `id`, se le agrega un tercer item al clon y se comprueba que el original no cambió.
+El uso es el mismo en los cuatro lenguajes: se clona un pedido de 2 items, se le asigna otro `id`, se cambia la cantidad de una línea existente del clon (`polera` pasa de 2 a 5 unidades) y se comprueba que el original no cambió. Cambiar una línea existente es lo que delata una copia superficial; agregar una línea nueva no siempre lo haría, según el lenguaje.
 
 #### Python
 
@@ -137,9 +137,9 @@ gorro = Producto(2, "Gorro", 5990)
 original = Pedido(1, [ItemCarrito(polera, 2), ItemCarrito(gorro, 1)], "Dejar en conserjería")
 clon = original.clonar()
 clon.id = 2
-clon.items.append(ItemCarrito(Producto(3, "Calcetines", 2990), 1))
-print(f"original: {len(original.items)} items, clon: {len(clon.items)} items")
-# => original: 2 items, clon: 3 items
+clon.items[0].cantidad = 5
+print(f"original: polera x{original.items[0].cantidad}, clon: polera x{clon.items[0].cantidad}")
+# => original: polera x2, clon: polera x5
 ```
 
 `Producto` es `frozen`, así que `deepcopy` igual lo duplica pero nadie podría modificarlo; la independencia importante es la de la lista y la de cada `ItemCarrito`.
@@ -188,9 +188,9 @@ const original = new Pedido(
 );
 const clon = original.clonar();
 clon.id = 2;
-clon.items.push({ producto: { id: 3, nombre: "Calcetines", precio: 2990 }, cantidad: 1 });
-console.log(`original: ${original.items.length} items, clon: ${clon.items.length} items`);
-// => original: 2 items, clon: 3 items
+clon.items[0].cantidad = 5;
+console.log(`original: polera x${original.items[0].cantidad}, clon: polera x${clon.items[0].cantidad}`);
+// => original: polera x2, clon: polera x5
 ```
 
 #### Go
@@ -238,13 +238,13 @@ func main() {
 	original := Pedido{1, []ItemCarrito{{polera, 2}, {gorro, 1}}, "Dejar en conserjería"}
 	clon := original.Clonar()
 	clon.ID = 2
-	clon.Items = append(clon.Items, ItemCarrito{Producto{3, "Calcetines", 2990}, 1})
-	fmt.Printf("original: %d items, clon: %d items\n", len(original.Items), len(clon.Items))
-	// => original: 2 items, clon: 3 items
+	clon.Items[0].Cantidad = 5
+	fmt.Printf("original: polera x%d, clon: polera x%d\n", original.Items[0].Cantidad, clon.Items[0].Cantidad)
+	// => original: polera x2, clon: polera x5
 }
 ```
 
-> **Nota Go:** no existe un `clone` genérico: asignar un struct (`copia := original`) copia **solo el nivel superficial**. Los campos simples (números, strings, structs con solo valores) se duplican, pero las slices y los maps se copian como "referencias", así que ambos structs comparten el mismo arreglo subyacente. Con `copia := original`, una línea como `copia.Items[0].Cantidad = 9` también cambia el original. Para independizar una slice se usa `append([]ItemCarrito(nil), p.Items...)` o `slices.Clone(p.Items)` (paquete `slices`, Go 1.21+). Si `ItemCarrito` tuviera a su vez slices o maps, habría que copiarlos también, elemento por elemento.
+> **Nota Go:** no existe un `clone` genérico: asignar un struct (`copia := original`) copia **solo el nivel superficial**. Los campos simples (números, strings, structs con solo valores) se duplican, pero las slices y los maps se copian como "referencias", así que ambos structs comparten el mismo arreglo subyacente. Con `copia := original`, una línea como `copia.Items[0].Cantidad = 9` también cambia el original; por eso el uso modifica una línea existente en vez de agregar una nueva (un `append` sobre la copia no alteraría el `len` del original y no delataría el problema). Para independizar una slice se usa `append([]ItemCarrito(nil), p.Items...)` o `slices.Clone(p.Items)` (paquete `slices`, Go 1.21+). Si `ItemCarrito` tuviera a su vez slices o maps, habría que copiarlos también, elemento por elemento.
 
 #### PHP
 
@@ -311,9 +311,9 @@ $gorro = new Producto(2, 'Gorro', 5990);
 $original = new Pedido(1, [new ItemCarrito($polera, 2), new ItemCarrito($gorro, 1)], 'Dejar en conserjería');
 $clon = $original->clonar();
 $clon->id = 2;
-$clon->items[] = new ItemCarrito(new Producto(3, 'Calcetines', 2990), 1);
-echo 'original: ' . count($original->items) . ' items, clon: ' . count($clon->items) . " items\n";
-// => original: 2 items, clon: 3 items
+$clon->items[0]->cantidad = 5;
+echo "original: polera x{$original->items[0]->cantidad}, clon: polera x{$clon->items[0]->cantidad}\n";
+// => original: polera x2, clon: polera x5
 ```
 
 `Producto` es `readonly`: al no poder cambiar, los pedidos pueden compartirlo sin riesgo, y no hace falta clonarlo.

@@ -362,6 +362,8 @@ probarConfirmar();
 
 ### Go
 
+Los bloques de Go forman un solo archivo `main.go`: el primero abre con `package main` y el `import`; los demás no los repiten.
+
 ```go
 package main
 
@@ -748,7 +750,7 @@ Fíjate en la prueba: arma el mismo `ServicioPedidos` pero con `PedidoRepository
 
 **El riesgo de pasarse.** No todo se inyecta. Los valores simples (un porcentaje de IVA, un nombre), las clases de utilidad puras y estables (una función que formatea una fecha, `Math.max`) y los objetos de datos (`Producto`, `Pedido`) se pueden usar directamente: no cambian de proveedor ni estorban en las pruebas. Tampoco hace falta una interfaz para cada clase: si solo existe una implementación y nada obliga a reemplazarla, la interfaz es ruido (YAGNI, [módulo 01](01-buenas-practicas.md)). Y no construyas un contenedor de IoC antes de necesitarlo: con tres o cuatro dependencias, un composition root escrito a mano es más claro que cualquier framework. El contenedor se justifica cuando el grafo de objetos es grande y armarlo a mano se vuelve repetitivo.
 
-Más adelante, los patrones Adapter y Facade reutilizarán estas piezas: Adapter permite que un proveedor externo cumpla la interfaz que definió tu código, y Facade usará `ServicioPedidos` como parte de un flujo mayor. Las fábricas (Factory Method y Abstract Factory) son otra forma de entregar dependencias cuando no se pueden crear de antemano.
+Más adelante, el patrón Adapter reutilizará estas piezas: permite que un proveedor externo cumpla la interfaz que definió tu código. Las fábricas (Factory Method y Abstract Factory) son otra forma de entregar dependencias cuando no se pueden crear de antemano.
 
 ## Ejercicio: detecta la violación
 
@@ -806,7 +808,7 @@ Una clase `FuenteVentasHttp` (la que usa `ClienteHttp`) cumple el mismo contrato
 ## Preguntas de entrevista
 
 **P1. ¿En qué se diferencian DIP, inyección de dependencias e IoC?**
-DIP es el principio: el código de alto nivel debe depender de abstracciones, no de detalles concretos. La inyección de dependencias es una técnica para lograrlo: la clase recibe sus dependencias desde afuera, normalmente por constructor, en lugar de crearlas. IoC es el concepto más amplio de ceder a un marco o contenedor el control de crear y conectar objetos, y un contenedor de IoC es una herramienta que automatiza la inyección; se puede cumplir DIP con inyección manual y sin ningún contenedor.
+DIP es el principio: el código de alto nivel debe depender de abstracciones, no de detalles concretos. La inyección de dependencias es una técnica para lograrlo: la clase recibe sus dependencias desde afuera, normalmente por constructor, en lugar de crearlas. IoC es el concepto más amplio de ceder a un marco o contenedor el control del flujo, incluida la creación y conexión de objetos, y un contenedor de IoC es una herramienta que automatiza la inyección; se puede cumplir DIP con inyección manual y sin ningún contenedor.
 
 **P2. ¿Por qué se dice "invertir"?**
 En el diseño ingenuo, las dependencias del código fuente siguen el flujo de llamadas: la regla de negocio importa y construye al detalle técnico, así que apunta "hacia abajo". Con DIP la regla define la interfaz que necesita y el detalle la implementa, de modo que la dependencia del código fuente del detalle apunta hacia la regla. El flujo de ejecución sigue yendo de la regla al detalle, pero las flechas de dependencia se invierten, y por eso un cambio en el detalle ya no obliga a tocar la regla.

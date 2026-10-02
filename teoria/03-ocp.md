@@ -403,7 +403,7 @@ func main() {
 }
 ```
 
-> **Nota Go:** en Go OCP casi viene incluido. Las interfaces son implícitas: `PagoBilletera` cumple `MetodoPago` con solo tener el método `Pagar`, sin declarar nada ni tocar el paquete donde se definió la interfaz. Para elegir el método por nombre basta un `map[string]MetodoPago` (`"webpay": &PagoWebpay{}`) que se llena al arrancar el programa, y si cada método es una sola operación sin estado, incluso alcanza una función `type FuncPago func(monto int) ResultadoPago`, igual que `http.HandlerFunc` adapta una función a la interfaz `http.Handler`. El mapa es el único lugar que se edita al agregar un método nuevo.
+> **Nota Go:** en Go OCP casi viene incluido. Las interfaces son implícitas: `PagoBilletera` cumple `MetodoPago` con solo tener el método `Pagar`, sin declarar nada ni tocar el paquete donde se definió la interfaz. Para elegir el método por nombre basta un `map[string]MetodoPago` (`"webpay": &PagoWebpay{}`) que se llena al arrancar el programa, y si cada método es una sola operación sin estado, incluso alcanza una función con nombre, `type FuncPago func(monto int) ResultadoPago`, con un método que la llama: `func (f FuncPago) Pagar(monto int) ResultadoPago { return f(monto) }`. Es lo que hace `http.HandlerFunc`, que tiene su método `ServeHTTP` para adaptar una función a la interfaz `http.Handler`. El mapa es el único lugar que se edita al agregar un método nuevo.
 
 ### PHP
 
@@ -471,6 +471,10 @@ class PagoTarjeta implements MetodoPago
         return new ResultadoPago(true, sprintf('TJ-%03d', ++$this->contador));
     }
 }
+```
+
+```php
+<?php
 
 class PagoTransferencia implements MetodoPago
 {

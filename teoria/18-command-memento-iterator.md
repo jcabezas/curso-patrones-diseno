@@ -1,6 +1,6 @@
 # De comportamiento: Command, Memento e Iterator
 
-Los tres patrones de este módulo tratan **acciones, estados y recorridos como objetos que se pueden guardar y manipular**. **Command** convierte una acción en un objeto con `ejecutar` y `deshacer`, **Memento** captura el estado interno de un objeto para restaurarlo luego sin exponerlo e **Iterator** recorre una colección sin que quien la usa conozca su estructura. Retoman el `Carrito` y el `Pedido` mutables del [módulo 11](11-prototype.md), cuya comparación con el snapshot opaco de Memento está al final; la idea de encapsular un comportamiento en un objeto intercambiable del [módulo 16](16-strategy-state-template-method.md), que la comparación usa para separar Command de Strategy; y las colaboraciones entre objetos del [módulo 17](17-observer-mediator-chain.md). Refuerzan el [SRP](02-srp.md), el [OCP](03-ocp.md) y el [ISP](05-isp.md). Producen `Comando` (con `ejecutar()` y `deshacer()`) con `AgregarAlCarrito`, `QuitarDelCarrito` e `Historial`; `CarritoMemento` con `Carrito.guardar()` y `Carrito.restaurar(m)`; y `CatalogoPaginado`, un catálogo iterable.
+Los tres patrones de este módulo tratan **acciones, estados y recorridos como objetos que se pueden guardar y manipular**. **Command** convierte una acción en un objeto con `ejecutar` y `deshacer`, **Memento** captura el estado interno de un objeto para restaurarlo luego sin exponerlo e **Iterator** recorre una colección sin que quien la usa conozca su estructura. Retoman la idea de copiar un objeto mutable del [módulo 11](11-prototype.md) (`Pedido.clonar()`), cuya comparación con el snapshot opaco de Memento está al final; la idea de encapsular un comportamiento en un objeto intercambiable del [módulo 16](16-strategy-state-template-method.md), que la comparación usa para separar Command de Strategy; y las colaboraciones entre objetos del [módulo 17](17-observer-mediator-chain.md). Refuerzan el [SRP](02-srp.md), el [OCP](03-ocp.md) y el [ISP](05-isp.md). Producen `Comando` (con `ejecutar()` y `deshacer()`) con `AgregarAlCarrito`, `QuitarDelCarrito` e `Historial`; `CarritoMemento` con `Carrito.guardar()` y `Carrito.restaurar(m)`; y `CatalogoPaginado`, un catálogo iterable.
 
 En Go, cada patrón de este módulo forma su propio `main.go` lógico: los bloques Go de una sección se leen de corrido y no repiten `package` ni `import`. El Iterator usa `iter.Seq`, que exige **Go 1.23** como mínimo. Para ser autocontenida, cada sección declara su propia versión mínima de `Carrito` (la de Command tiene `quitar`, la de Memento tiene `guardar`/`restaurar`).
 
@@ -609,7 +609,7 @@ classDiagram
 
 ### Código
 
-El uso es el mismo en los cuatro lenguajes: se guardan 2 items, se agrega un tercero (3 items) y al restaurar vuelven los 2. Si `guardar` no copiara el estado (guardara la misma lista que sigue cambiando), el carrito restaurado diría 3 items. En los cuatro, las líneas del carrito son **inmutables**, así que copiar la lista de líneas basta para que el memento sea una foto; para estado mutable habría que copiar también cada elemento, que es donde entra la copia profunda del [módulo 11](11-prototype.md).
+El uso es el mismo en los cuatro lenguajes: se guardan 2 items, se agrega un tercero (3 items) y al restaurar vuelven los 2. En Python y TypeScript, si `guardar` no copiara el estado (guardara la misma lista que sigue cambiando), el carrito restaurado diría 3 items; en Go y PHP la demo no lo delataría (un array de PHP se copia por valor, y el memento de Go guarda su propio `len`). En los cuatro, las líneas del carrito son **inmutables**, así que copiar la lista de líneas basta para que el memento sea una foto; para estado mutable habría que copiar también cada elemento, que es donde entra la copia profunda del [módulo 11](11-prototype.md).
 
 #### Python
 
@@ -728,7 +728,7 @@ console.log(`restaurado: ${carrito.resumen()}`); // => restaurado: 2 items
 
 #### Go
 
-En Go la privacidad es **por paquete**, no por tipo. `CarritoMemento` tiene un campo no exportado (`items`): desde otro paquete se puede guardar y devolver el valor, pero no leer ni cambiar su contenido. Como este `main.go` es un solo paquete, aquí cualquiera podría leer `m.items`; en un proyecto real `Carrito` y `CarritoMemento` irían juntos en un paquete propio (por ejemplo `carrito`) y el cuidador, en otro.
+En Go la privacidad es **por paquete**, no por tipo. `CarritoMemento` tiene un campo no exportado (`items`): desde otro paquete se puede guardar y devolver el valor, pero no leer ni cambiar su contenido. Además, en Go el memento guarda su propio `len`, así que el riesgo de no copiar aparece al modificar una línea existente, no al agregar; por eso `Guardar` y `Restaurar` copian igual. Como este `main.go` es un solo paquete, aquí cualquiera podría leer `m.items`; en un proyecto real `Carrito` y `CarritoMemento` irían juntos en un paquete propio (por ejemplo `carrito`) y el cuidador, en otro.
 
 ```go
 package main

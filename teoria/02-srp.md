@@ -332,9 +332,13 @@ console.log(correo.enviados[0]); // => ana@correo.cl | Pedido 101 confirmado. Fa
 
 ### Go
 
-Los bloques de Go forman un solo archivo `main.go`; `package main` e `import "fmt"` se muestran donde hacen falta para que cada bloque se lea por sí solo.
+Los bloques de Go forman un solo archivo `main.go`: el primero abre con `package main` y el `import`; los demás no los repiten.
 
 ```go
+package main
+
+import "fmt"
+
 const ivaPorcentaje = 19
 
 type Producto struct {
@@ -386,8 +390,6 @@ type GeneradorFactura interface {
 ```
 
 ```go
-import "fmt"
-
 type repositorioMemoria struct {
 	pedidos map[int]*Pedido
 }
@@ -422,10 +424,6 @@ func (facturaTexto) Generar(pedido *Pedido) string {
 ```
 
 ```go
-package main
-
-import "fmt"
-
 type ConfirmarPedido struct {
 	repo        PedidoRepository
 	notificador Notificador
