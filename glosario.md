@@ -20,6 +20,12 @@ Qué tanto depende un módulo de otro. Con acoplamiento bajo, cambiar una pieza 
 
 Ver también: [módulo 01](teoria/01-buenas-practicas.md)
 
+## Adapter
+
+Patrón estructural que convierte la interfaz de una clase existente en la que el cliente espera, envolviéndola y traduciendo datos de entrada y de salida. Sirve para integrar SDK o código que no se puede modificar.
+
+Ver también: [módulo 12](teoria/12-adapter-facade.md)
+
 ## Builder
 
 Patrón creacional que arma un objeto complejo paso a paso y lo entrega al final con `construir()`, ya validado. Evita constructores con muchos parámetros y objetos a medio armar.
@@ -115,6 +121,12 @@ Ver también: [módulo 07](teoria/07-singleton.md)
 Agregar comportamiento nuevo escribiendo código nuevo (una clase que implementa una interfaz existente) sin editar el código que ya funciona.
 
 Ver también: [módulo 03](teoria/03-ocp.md)
+
+## Facade
+
+Patrón estructural que ofrece una interfaz simple y unificada sobre un subsistema complejo, coordinando sus piezas en el orden correcto. No impide usar el subsistema directamente.
+
+Ver también: [módulo 12](teoria/12-adapter-facade.md)
 
 ## Factory Method
 
@@ -290,6 +302,12 @@ Ver también: [módulo 02](teoria/02-srp.md)
 
 Ver también: [módulo 02](teoria/02-srp.md)
 
+## Subsistema
+
+Conjunto de clases que colaboran para una tarea y tienen interfaces propias; una fachada se pone delante de él para simplificar su uso.
+
+Ver también: [módulo 12](teoria/12-adapter-facade.md)
+
 ## Test double
 
 Objeto falso y simple (en memoria, que registra lo que recibe) que reemplaza a una dependencia real durante una prueba: un repositorio en memoria, un notificador falso.
@@ -307,6 +325,12 @@ Ver también: [módulo 07](teoria/07-singleton.md)
 Lenguaje gráfico estándar para dibujar la estructura y el comportamiento del software. En el curso se escribe con Mermaid.
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
+
+## Wrapper
+
+Objeto que envuelve a otro y le presenta una interfaz o comportamiento distinto, delegando en él. Adapter, Decorator y Proxy son tipos de wrapper.
+
+Ver también: [módulo 12](teoria/12-adapter-facade.md)
 
 ## YAGNI
 
