@@ -35,6 +35,12 @@ Estructura de datos en la que cada elemento (nodo) puede tener elementos hijos, 
 
 Ver también: [módulo 14](teoria/14-composite-flyweight.md)
 
+## AST
+
+Árbol de sintaxis abstracta: la representación de una expresión como un árbol de objetos, sin el texto original. En Interpreter, cada nodo sabe evaluarse y el árbol completo es la regla.
+
+Ver también: [módulo 19](teoria/19-visitor-interpreter.md)
+
 ## Bridge
 
 Patrón estructural que separa una abstracción de su implementación en dos jerarquías independientes. La abstracción guarda una referencia al implementor y le delega el trabajo, así que cada lado crece sin tocar al otro.
@@ -137,6 +143,12 @@ Ver también: [módulo 13](teoria/13-decorator-proxy.md)
 
 Ver también: [módulo 06](teoria/06-dip.md)
 
+## Doble despacho
+
+Mecanismo que elige el método a ejecutar según el tipo de dos objetos y no de uno. Visitor lo logra con dos llamadas seguidas: `elemento.aceptar(visitante)` y, dentro, `visitante.visitar...(this)`.
+
+Ver también: [módulo 19](teoria/19-visitor-interpreter.md)
+
 ## DRY
 
 *Don't Repeat Yourself*: cada pieza de conocimiento (una regla, una fórmula) debe vivir en un solo lugar. No prohíbe que dos trozos de código se parezcan, solo que se repita la misma decisión.
@@ -233,6 +245,12 @@ Clase que lo sabe y lo hace todo: acumula muchas responsabilidades no relacionad
 
 Ver también: [módulo 02](teoria/02-srp.md)
 
+## Gramática
+
+Conjunto de reglas que define qué expresiones son válidas en un lenguaje y cómo se combinan. En Interpreter, cada regla de la gramática se representa con una clase.
+
+Ver también: [módulo 19](teoria/19-visitor-interpreter.md)
+
 ## Herencia
 
 Mecanismo por el que una clase reutiliza y extiende a otra (relación "es un"). Es potente, pero acopla al hijo con el padre.
@@ -268,6 +286,12 @@ Ver también: [módulo 10](teoria/10-builder.md)
 Interfaz con demasiados métodos de motivos distintos, de los que cada cliente usa solo una parte. Obliga a las implementaciones a rellenar métodos que no les corresponden.
 
 Ver también: [módulo 05](teoria/05-isp.md)
+
+## Interpreter
+
+Patrón de comportamiento que representa las reglas de un lenguaje pequeño como un árbol de objetos (uno por elemento de la gramática) y evalúa una expresión recorriéndolo.
+
+Ver también: [módulo 19](teoria/19-visitor-interpreter.md)
 
 ## Inyección de dependencias
 
@@ -508,6 +532,12 @@ Ver también: [módulo 00](teoria/00-introduccion.md)
 Deshacer y rehacer: retroceder una acción ya hecha o repetir una deshecha. Se implementa con Command y dos pilas (hechos y deshechos).
 
 Ver también: [módulo 18](teoria/18-command-memento-iterator.md)
+
+## Visitor
+
+Patrón de comportamiento que separa una operación de la estructura de objetos sobre la que actúa, usando doble despacho. Permite agregar operaciones nuevas sin modificar las clases de los elementos.
+
+Ver también: [módulo 19](teoria/19-visitor-interpreter.md)
 
 ## Wrapper
 
