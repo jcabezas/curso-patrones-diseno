@@ -54,6 +54,13 @@ Los módulos de principios y buenas prácticas siguen el mismo esquema con "viol
 
 La agrupación exacta de los módulos 12-19 se fija en el plan de implementación.
 
+## Preguntas de entrevista
+
+- Cada módulo cierra con un bloque de 4 a 6 preguntas, cada una con una respuesta modelo breve (2 a 4 frases) que se puede decir en voz alta.
+- Mezcla tres tipos: conceptuales ("¿qué problema resuelve Strategy?"), comparativas ("Factory Method vs Abstract Factory", "Decorator vs Proxy", "Adapter vs Facade") y de criterio ("¿cuándo NO usarías Singleton?").
+- En los módulos de SOLID se incluye además un ejercicio de detectar la violación en un fragmento de código.
+- `preguntas-entrevista.md` consolida todas, agrupadas por tema, más un bloque transversal de preguntas que cruzan módulos (p. ej. "¿qué patrón aplica OCP?", "¿qué patrones sirven para evitar un `if` por tipo?").
+
 ## Verificación
 
 Como no hay código ejecutable: revisión de enlaces (`glosario.md#...` y entre módulos), consistencia de la estructura fija por módulo, y que cada patrón tenga sus 4 lenguajes y su diagrama.
