@@ -26,6 +26,12 @@ Patrón estructural que convierte la interfaz de una clase existente en la que e
 
 Ver también: [módulo 12](teoria/12-adapter-facade.md)
 
+## Árbol
+
+Estructura de datos en la que cada elemento (nodo) puede tener elementos hijos, empezando por una raíz. Las carpetas con archivos y los combos con productos son ejemplos.
+
+Ver también: [módulo 14](teoria/14-composite-flyweight.md)
+
 ## Builder
 
 Patrón creacional que arma un objeto complejo paso a paso y lo entrega al final con `construir()`, ya validado. Evita constructores con muchos parámetros y objetos a medio armar.
@@ -55,6 +61,12 @@ Ver también: [módulo 01](teoria/01-buenas-practicas.md)
 Técnica en la que un objeto se arma con otros objetos y les delega trabajo (relación "tiene un"). Es más flexible que la herencia.
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
+
+## Composite
+
+Patrón estructural que compone objetos en un árbol y permite tratar de la misma forma a un objeto individual (hoja) y a un grupo de ellos (compuesto) mediante una interfaz común.
+
+Ver también: [módulo 14](teoria/14-composite-flyweight.md)
 
 ## Composition root
 
@@ -116,11 +128,23 @@ Ocultar el estado interno de un objeto y exponer solo operaciones controladas, d
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
 
+## Estado extrínseco
+
+En Flyweight, la parte del estado que depende de cada uso del objeto (como el SKU y el precio de un ítem). No se comparte: lo guarda el contexto o se pasa como argumento.
+
+Ver también: [módulo 14](teoria/14-composite-flyweight.md)
+
 ## Estado global
 
 Datos que cualquier parte del programa puede leer o modificar desde cualquier lugar (una variable global, un Singleton mutable). Esconde dependencias y hace que las pruebas se contaminen entre sí.
 
 Ver también: [módulo 07](teoria/07-singleton.md)
+
+## Estado intrínseco
+
+En Flyweight, la parte del estado que es igual para muchos objetos y no cambia (como la descripción y la imagen de un tipo de producto). Es inmutable y se comparte.
+
+Ver también: [módulo 14](teoria/14-composite-flyweight.md)
 
 ## Extensión
 
@@ -145,6 +169,12 @@ Ver también: [módulo 08](teoria/08-factory-method.md)
 Conjunto de objetos pensados para usarse juntos, como Webpay, el antifraude local y la boleta SII en Chile. Una Abstract Factory crea una familia completa y evita mezclar piezas de familias distintas.
 
 Ver también: [módulo 09](teoria/09-abstract-factory.md)
+
+## Flyweight
+
+Patrón estructural que ahorra memoria compartiendo la parte común e inmutable (estado intrínseco) de muchos objetos, y guardando aparte la parte que varía (estado extrínseco).
+
+Ver también: [módulo 14](teoria/14-composite-flyweight.md)
 
 ## Functional options
 
