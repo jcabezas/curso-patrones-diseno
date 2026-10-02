@@ -44,6 +44,12 @@ Ocultar el estado interno de un objeto y exponer solo operaciones controladas, d
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
 
+## God Object
+
+Clase que lo sabe y lo hace todo: acumula muchas responsabilidades no relacionadas y todo el sistema depende de ella. Es la violación típica de SRP.
+
+Ver también: [módulo 02](teoria/02-srp.md)
+
 ## Herencia
 
 Mecanismo por el que una clase reutiliza y extiende a otra (relación "es un"). Es potente, pero acopla al hijo con el padre.
@@ -86,11 +92,29 @@ Capacidad de que un mismo mensaje produzca comportamientos distintos según el o
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
 
+## Razón para cambiar
+
+Motivo de negocio, normalmente ligado a un área o persona, por el que hay que editar una clase. SRP pide que cada clase tenga una sola.
+
+Ver también: [módulo 02](teoria/02-srp.md)
+
 ## Regla de tres
 
 Heurística para abstraer: la primera vez se escribe, la segunda se tolera la repetición y a la tercera se extrae una abstracción, cuando ya se ve qué es común de verdad.
 
 Ver también: [módulo 01](teoria/01-buenas-practicas.md)
+
+## SOLID
+
+Cinco principios de diseño orientado a objetos (SRP, OCP, LSP, ISP, DIP) que ayudan a escribir código fácil de cambiar y de probar.
+
+Ver también: [módulo 02](teoria/02-srp.md)
+
+## SRP
+
+*Single Responsibility Principle*: una clase debe tener una, y solo una, razón para cambiar. No significa que haga una sola cosa.
+
+Ver también: [módulo 02](teoria/02-srp.md)
 
 ## UML
 

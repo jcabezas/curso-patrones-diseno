@@ -19,7 +19,7 @@ Curso autodidacta, nivel entrevista: entender cada concepto, saber explicarlo y 
 
 - [x] 00 [Introducción y repaso de OOP](teoria/00-introduccion.md)
 - [x] 01 [Buenas prácticas](teoria/01-buenas-practicas.md)
-- [ ] 02 [SRP](teoria/02-srp.md)
+- [x] 02 [SRP](teoria/02-srp.md)
 - [ ] 03 [OCP](teoria/03-ocp.md)
 - [ ] 04 [LSP](teoria/04-lsp.md)
 - [ ] 05 [ISP](teoria/05-isp.md)
