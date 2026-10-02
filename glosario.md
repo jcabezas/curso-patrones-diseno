@@ -38,11 +38,23 @@ Técnica en la que un objeto se arma con otros objetos y les delega trabajo (rel
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
 
+## Composition root
+
+Único lugar, cerca del arranque del programa, que conoce las clases concretas, las crea y las conecta entre sí. El resto del código solo ve interfaces.
+
+Ver también: [módulo 06](teoria/06-dip.md)
+
 ## Contrato
 
 Conjunto de promesas que una clase o interfaz hace a quien la usa: qué precondiciones exige, qué poscondiciones garantiza y qué invariantes mantiene. Una subclase sustituible respeta el contrato de su base.
 
 Ver también: [módulo 04](teoria/04-lsp.md)
+
+## DIP
+
+*Dependency Inversion Principle*: los módulos de alto nivel no deben depender de los de bajo nivel; ambos deben depender de abstracciones. La regla define el contrato y el detalle lo implementa.
+
+Ver también: [módulo 06](teoria/06-dip.md)
 
 ## DRY
 
@@ -92,11 +104,23 @@ Interfaz con demasiados métodos de motivos distintos, de los que cada cliente u
 
 Ver también: [módulo 05](teoria/05-isp.md)
 
+## Inyección de dependencias
+
+Técnica en la que una clase recibe de afuera las piezas que necesita (por constructor, método o propiedad) en lugar de crearlas ella misma. Es la forma más común de cumplir DIP.
+
+Ver también: [módulo 06](teoria/06-dip.md)
+
 ## Invariante
 
 Condición que siempre es verdadera sobre un objeto, antes y después de cada operación (por ejemplo, un precio nunca negativo). Las subclases deben conservarla.
 
 Ver también: [módulo 04](teoria/04-lsp.md)
+
+## IoC
+
+*Inversion of Control*: el control de crear y conectar los objetos lo tiene un marco o contenedor, no tu código. Un contenedor de IoC automatiza la inyección de dependencias y es opcional.
+
+Ver también: [módulo 06](teoria/06-dip.md)
 
 ## ISP
 
@@ -181,6 +205,12 @@ Ver también: [módulo 02](teoria/02-srp.md)
 *Single Responsibility Principle*: una clase debe tener una, y solo una, razón para cambiar. No significa que haga una sola cosa.
 
 Ver también: [módulo 02](teoria/02-srp.md)
+
+## Test double
+
+Objeto falso y simple (en memoria, que registra lo que recibe) que reemplaza a una dependencia real durante una prueba: un repositorio en memoria, un notificador falso.
+
+Ver también: [módulo 06](teoria/06-dip.md)
 
 ## UML
 
