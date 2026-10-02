@@ -50,6 +50,12 @@ Ver también: [módulo 04](teoria/04-lsp.md)
 
 Ver también: [módulo 01](teoria/01-buenas-practicas.md)
 
+## Duck typing
+
+En lenguajes dinámicos como Python, un objeto sirve si tiene los métodos que se le piden, sin importar su clase ("si camina como pato y suena como pato, es un pato"). Es polimorfismo sin declarar interfaces.
+
+Ver también: [módulo 05](teoria/05-isp.md)
+
 ## Encapsulamiento
 
 Ocultar el estado interno de un objeto y exponer solo operaciones controladas, de modo que el resto del código no dependa de los detalles.
@@ -80,11 +86,23 @@ Contrato que lista las operaciones que un tipo promete ofrecer, sin decir cómo 
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
 
+## Interfaz gorda
+
+Interfaz con demasiados métodos de motivos distintos, de los que cada cliente usa solo una parte. Obliga a las implementaciones a rellenar métodos que no les corresponden.
+
+Ver también: [módulo 05](teoria/05-isp.md)
+
 ## Invariante
 
 Condición que siempre es verdadera sobre un objeto, antes y después de cada operación (por ejemplo, un precio nunca negativo). Las subclases deben conservarla.
 
 Ver también: [módulo 04](teoria/04-lsp.md)
+
+## ISP
+
+*Interface Segregation Principle*: ningún cliente debe verse obligado a depender de métodos que no usa. Se prefieren varias interfaces pequeñas y específicas a una sola interfaz gorda.
+
+Ver también: [módulo 05](teoria/05-isp.md)
 
 ## KISS
 

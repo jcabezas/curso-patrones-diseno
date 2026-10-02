@@ -22,7 +22,7 @@ Curso autodidacta, nivel entrevista: entender cada concepto, saber explicarlo y 
 - [x] 02 [SRP](teoria/02-srp.md)
 - [x] 03 [OCP](teoria/03-ocp.md)
 - [x] 04 [LSP](teoria/04-lsp.md)
-- [ ] 05 [ISP](teoria/05-isp.md)
+- [x] 05 [ISP](teoria/05-isp.md)
 - [ ] 06 [DIP](teoria/06-dip.md)
 - [ ] 07 [Singleton](teoria/07-singleton.md)
 - [ ] 08 [Factory Method](teoria/08-factory-method.md)
