@@ -25,7 +25,7 @@ Curso autodidacta, nivel entrevista: entender cada concepto, saber explicarlo y 
 - [x] 05 [ISP](teoria/05-isp.md)
 - [x] 06 [DIP](teoria/06-dip.md)
 - [x] 07 [Singleton](teoria/07-singleton.md)
-- [ ] 08 [Factory Method](teoria/08-factory-method.md)
+- [x] 08 [Factory Method](teoria/08-factory-method.md)
 - [ ] 09 [Abstract Factory](teoria/09-abstract-factory.md)
 - [ ] 10 [Builder](teoria/10-builder.md)
 - [ ] 11 [Prototype](teoria/11-prototype.md)

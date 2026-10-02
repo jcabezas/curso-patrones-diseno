@@ -86,6 +86,12 @@ Agregar comportamiento nuevo escribiendo código nuevo (una clase que implementa
 
 Ver también: [módulo 03](teoria/03-ocp.md)
 
+## Factory Method
+
+Patrón creacional que define un método creador en una clase base y deja que las subclases decidan qué clase concreta instanciar. En lenguajes sin herencia, como Go, se reduce a una función constructora que devuelve una interfaz.
+
+Ver también: [módulo 08](teoria/08-factory-method.md)
+
 ## God Object
 
 Clase que lo sabe y lo hace todo: acumula muchas responsabilidades no relacionadas y todo el sistema depende de ella. Es la violación típica de SRP.
@@ -158,6 +164,12 @@ Valor literal sin nombre dentro del código (`19`, `30`) cuyo significado nadie 
 
 Ver también: [módulo 01](teoria/01-buenas-practicas.md)
 
+## Método creador
+
+El método de un Factory Method que crea y devuelve el producto (por ejemplo `crearNotificador()`). La clase base lo declara y cada subclase lo sobrescribe para elegir qué clase concreta se instancia.
+
+Ver también: [módulo 08](teoria/08-factory-method.md)
+
 ## OCP
 
 *Open/Closed Principle*: el código debe estar abierto para extensión y cerrado para modificación. Los casos nuevos se agregan como código nuevo detrás de una abstracción, sin editar lo existente.
@@ -199,6 +211,12 @@ Ver también: [módulo 02](teoria/02-srp.md)
 Heurística para abstraer: la primera vez se escribe, la segunda se tolera la repetición y a la tercera se extrae una abstracción, cuando ya se ve qué es común de verdad.
 
 Ver también: [módulo 01](teoria/01-buenas-practicas.md)
+
+## Simple Factory
+
+Función o clase con un método que construye objetos según un parámetro (por ejemplo `crearNotificador("sms")`). No es un patrón GoF, pero es la forma más común de centralizar la creación.
+
+Ver también: [módulo 08](teoria/08-factory-method.md)
 
 ## Singleton
 
