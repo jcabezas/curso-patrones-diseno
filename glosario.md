@@ -77,6 +77,12 @@ Qué tanto trabajan en lo mismo las partes de un módulo. Una cohesión alta sig
 
 Ver también: [módulo 01](teoria/01-buenas-practicas.md)
 
+## Command
+
+Patrón de comportamiento que encapsula una solicitud como un objeto con `ejecutar()` y, si aplica, `deshacer()`. Permite guardar, encolar, registrar y revertir acciones.
+
+Ver también: [módulo 18](teoria/18-command-memento-iterator.md)
+
 ## Composición
 
 Técnica en la que un objeto se arma con otros objetos y les delega trabajo (relación "tiene un"). Es más flexible que la herencia.
@@ -215,6 +221,12 @@ Idioma de Go para construir objetos con opciones: la función constructora recib
 
 Ver también: [módulo 10](teoria/10-builder.md)
 
+## Generador
+
+Función que entrega valores uno a uno con `yield` y se pausa entre uno y otro, guardando su estado. Es la forma más corta de escribir un Iterator perezoso.
+
+Ver también: [módulo 18](teoria/18-command-memento-iterator.md)
+
 ## God Object
 
 Clase que lo sabe y lo hace todo: acumula muchas responsabilidades no relacionadas y todo el sistema depende de ella. Es la violación típica de SRP.
@@ -281,6 +293,12 @@ Ver también: [módulo 06](teoria/06-dip.md)
 
 Ver también: [módulo 05](teoria/05-isp.md)
 
+## Iterator
+
+Patrón de comportamiento que permite recorrer los elementos de una colección sin exponer su estructura interna. El cliente solo pide "el siguiente".
+
+Ver también: [módulo 18](teoria/18-command-memento-iterator.md)
+
 ## KISS
 
 *Keep It Simple, Stupid*: entre varias soluciones que resuelven el problema, elegir la más simple y fácil de entender.
@@ -322,6 +340,12 @@ Ver también: [módulo 16](teoria/16-strategy-state-template-method.md)
 Patrón de comportamiento que centraliza la comunicación entre varios objetos en un mediador, de modo que los colegas solo lo conocen a él. Convierte referencias de muchos a muchos en uno a muchos, con el riesgo de crear un God Object.
 
 Ver también: [módulo 17](teoria/17-observer-mediator-chain.md)
+
+## Memento
+
+Patrón de comportamiento que captura el estado interno de un objeto en un snapshot opaco para restaurarlo después, sin romper su encapsulamiento.
+
+Ver también: [módulo 18](teoria/18-command-memento-iterator.md)
 
 ## Método creador
 
@@ -419,6 +443,12 @@ Patrón creacional que garantiza que una clase tenga una única instancia y ofre
 
 Ver también: [módulo 07](teoria/07-singleton.md)
 
+## Snapshot
+
+Foto inmutable del estado de un objeto en un instante. En Memento, solo el objeto original sabe leerla y restaurarla.
+
+Ver también: [módulo 18](teoria/18-command-memento-iterator.md)
+
 ## SOLID
 
 Cinco principios de diseño orientado a objetos (SRP, OCP, LSP, ISP, DIP) que ayudan a escribir código fácil de cambiar y de probar.
@@ -472,6 +502,12 @@ Ver también: [módulo 07](teoria/07-singleton.md)
 Lenguaje gráfico estándar para dibujar la estructura y el comportamiento del software. En el curso se escribe con Mermaid.
 
 Ver también: [módulo 00](teoria/00-introduccion.md)
+
+## Undo/redo
+
+Deshacer y rehacer: retroceder una acción ya hecha o repetir una deshecha. Se implementa con Command y dos pilas (hechos y deshechos).
+
+Ver también: [módulo 18](teoria/18-command-memento-iterator.md)
 
 ## Wrapper
 
