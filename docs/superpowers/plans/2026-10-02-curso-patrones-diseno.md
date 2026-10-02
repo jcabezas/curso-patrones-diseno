@@ -18,7 +18,7 @@ Estas restricciones forman parte de cada tarea.
 - Idioma: español neutro/latinoamericano. **Nunca voseo** (vos, tenés, podés, grabás, parás, mirá...). Usar tuteo o impersonal. Tildes y eñes siempre completas. Términos técnicos en inglés cuando son el estándar (Singleton, Builder, callback, middleware).
 - Alcance: GoF completo (23 patrones). Sin patrones de arquitectura (CQRS, Hexagonal, etc.).
 - Código: solo fragmentos dentro del Markdown, sin archivos ejecutables ni tests del código del curso.
-- Dominio hilo conductor: tienda online. Un patrón solo usa otro dominio si la tienda no lo representa de forma natural (Interpreter usa un mini-lenguaje de reglas de cupones, que sigue siendo de la tienda).
+- Dominio hilo conductor: tienda online, **con excepciones puntuales** (decisión del usuario). Un patrón solo sale de la tienda si esta no lo representa de forma natural. Casos previstos: **Flyweight** abre con un ejemplo gráfico de una línea (miles de árboles de un mapa que comparten la misma textura) y luego aterriza en el catálogo; **Mediator** puede cambiar el checkout por un chat de soporte si el ejemplo de UI resulta artificial; **Interpreter** se queda con las reglas de cupones. Cualquier otra excepción se justifica en una frase dentro del módulo.
 - Lenguajes y versiones de referencia: Python 3.12+, TypeScript 5.x, Go 1.22+ (1.23 para `iter.Seq` en Iterator), PHP 8.3.
 - Go idiomático: interfaces implícitas, composición por embedding, funciones de primera clase y errores como valores. Cuando un patrón se simplifica o casi desaparece en Go, agregar una nota `> **Nota Go:** ...`.
 - Estilo de explicación: párrafos cortos, una analogía cotidiana de 1 a 2 frases al abrir "La idea en pocas palabras", sin jerga sin definir. Glosa inline de una frase la primera vez que aparece un término técnico en el módulo, con enlace al glosario: `acoplamiento (qué tanto depende un módulo de otro; [glosario](../glosario.md#acoplamiento))`.
@@ -101,6 +101,7 @@ Entradas y fallas que el spec implica y que ninguna prueba obvia cubre. Cada lí
 ```
 .tmp/
 __pycache__/
+.superpowers/
 ```
 
 - [ ] **Step 2: Crear `scripts/verificar.py`** con exactamente este contenido
