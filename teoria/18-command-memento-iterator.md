@@ -728,7 +728,7 @@ console.log(`restaurado: ${carrito.resumen()}`); // => restaurado: 2 items
 
 #### Go
 
-En Go la privacidad es **por paquete**, no por tipo. `CarritoMemento` tiene un campo no exportado (`items`): desde otro paquete se puede guardar y devolver el valor, pero no leer ni cambiar su contenido. Además, en Go el memento guarda su propio `len`, así que el riesgo de no copiar aparece al modificar una línea existente, no al agregar; por eso `Guardar` y `Restaurar` copian igual. Como este `main.go` es un solo paquete, aquí cualquiera podría leer `m.items`; en un proyecto real `Carrito` y `CarritoMemento` irían juntos en un paquete propio (por ejemplo `carrito`) y el cuidador, en otro.
+En Go la privacidad es **por paquete**, no por tipo. `CarritoMemento` tiene un campo no exportado (`items`): desde otro paquete se puede guardar y devolver el valor, pero no leer ni cambiar su contenido. Además, en Go el memento guarda su propio `len`, así que con un `Carrito` que solo agrega, la demo no delataría la falta de copia. El riesgo real aparece si otro método reescribe el arreglo subyacente en el lugar (por ejemplo, un `Quitar` que desplaza elementos), porque memento y carrito compartirían ese arreglo; por eso `Guardar` y `Restaurar` copian igual. Como este `main.go` es un solo paquete, aquí cualquiera podría leer `m.items`; en un proyecto real `Carrito` y `CarritoMemento` irían juntos en un paquete propio (por ejemplo `carrito`) y el cuidador, en otro.
 
 ```go
 package main
